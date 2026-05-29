@@ -5,18 +5,1523 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/jpeg" href="/logo.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap"
-    rel="stylesheet">
-  <title>Neurautomation</title>
-  <script type="module" crossorigin src="/assets/index-BV2lXaCF.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-C0SFwXPI.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <title>Neurautomation - Agentes de IA & Automação</title>
+  
+  <style>
+    /* Reset & Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background-color: #030712;
+      color: #f3f4f6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Glow Blobs background */
+    .glow-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glow-blob {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(0,0,0,0) 100%);
+      filter: blur(80px);
+      animation: float 20s infinite alternate ease-in-out;
+    }
+
+    .glow-blob-1 {
+      top: -200px;
+      left: -100px;
+    }
+
+    .glow-blob-2 {
+      top: 600px;
+      right: -200px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, rgba(0,0,0,0) 100%);
+      animation-delay: -5s;
+    }
+
+    .glow-blob-3 {
+      top: 1500px;
+      left: -200px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(0,0,0,0) 100%);
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 60px) scale(1.1); }
+      100% { transform: translate(-20px, -40px) scale(0.9); }
+    }
+
+    /* Layout Utility */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 8rem 0 4rem 0;
+    }
+
+    /* Glassmorphism Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(3, 7, 18, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .header-scrolled {
+      background: rgba(3, 7, 18, 0.9);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4.5rem;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.25rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .logo-img {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+      object-cover: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #9ca3af;
+      font-weight: 500;
+      font-size: 0.925rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: #06b6d4;
+    }
+
+    .nav-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
+      color: white;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.25);
+    }
+
+    .nav-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Premium Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
+      color: white;
+      box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding-top: 10rem;
+      padding-bottom: 6rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      color: #06b6d4;
+      font-size: 0.825rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #06b6d4;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #22d3ee 0%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #9ca3af;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    /* Hero Logo Showcase */
+    .hero-showcase {
+      max-width: 650px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-showcase-bg-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(0,0,0,0) 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .logo-showcase-card {
+      background: rgba(15, 23, 42, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 32px;
+      padding: 3rem;
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: border-color 0.5s ease;
+    }
+
+    .logo-showcase-card:hover {
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+
+    .logo-showcase-img {
+      width: 12rem;
+      height: 12rem;
+      border-radius: 2rem;
+      box-shadow: 0 0 40px rgba(6, 182, 212, 0.3), 0 0 80px rgba(124, 58, 237, 0.1);
+      margin-bottom: 2rem;
+      animation: logoFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .logo-showcase-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-showcase-subtitle {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #06b6d4;
+      font-weight: 700;
+    }
+
+    /* Social Proof Section */
+    .social-proof {
+      padding: 4rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .social-proof p {
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .marquee {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .partner-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #4b5563;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      color: #9ca3af;
+    }
+
+    .partner-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: currentColor;
+    }
+
+    /* Glassmorphism Cards */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .section-header p {
+      font-size: 1.125rem;
+      color: #9ca3af;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(6, 182, 212, 0.25);
+      box-shadow: 0 30px 50px -20px rgba(6, 182, 212, 0.15);
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon-container {
+      width: 3.5rem;
+      height: 3.5rem;
+      background: rgba(6, 182, 212, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #22d3ee;
+      border: 1px solid rgba(6, 182, 212, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover .card-icon-container {
+      background: rgba(6, 182, 212, 0.2);
+      transform: scale(1.05);
+      color: #fff;
+    }
+
+    .card-icon {
+      width: 1.75rem;
+      height: 1.75rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .glass-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .glass-card p {
+      color: #9ca3af;
+      font-size: 0.975rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Philosophy & IA Functionality Section */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .philosophy-info h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .philosophy-info p {
+      color: #9ca3af;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: #d1d5db;
+      font-size: 1rem;
+    }
+
+    .info-list li svg {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.2rem;
+    }
+
+    .info-list li.check svg {
+      color: #10b981;
+    }
+
+    .info-list li.cross svg {
+      color: #ef4444;
+    }
+
+    .philosophy-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 3rem;
+    }
+
+    /* Grid of Mission & Values */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 1.5rem;
+    }
+
+    .value-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-card p {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    /* Warning Card */
+    .warning-section {
+      margin: 4rem 0;
+    }
+
+    .warning-card {
+      background: rgba(245, 158, 11, 0.03);
+      border: 1px solid rgba(245, 158, 11, 0.15);
+      border-radius: 24px;
+      padding: 2.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.05);
+    }
+
+    .warning-icon-container {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+      border-radius: 12px;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .warning-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f3f4f6;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .warning-content p {
+      color: #d1d5db;
+      font-size: 0.925rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .warning-content ul {
+      margin-top: 1rem;
+      list-style-type: disc;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: #9ca3af;
+      font-size: 0.875rem;
+    }
+
+    /* Call to Action Banner */
+    .cta-banner {
+      background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15) 0%, rgba(124, 58, 237, 0.1) 60%, rgba(3, 7, 18, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
+      padding: 5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 6rem;
+    }
+
+    .cta-banner h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .cta-banner p {
+      font-size: 1.2rem;
+      color: #d1d5db;
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+      font-weight: 300;
+    }
+
+    .cta-banner-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    /* Prose / Document View */
+    .prose-section {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .prose-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .prose-meta {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-bottom: 3rem;
+    }
+
+    .prose-content {
+      line-height: 1.8;
+      color: #d1d5db;
+    }
+
+    .prose-content h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.5rem;
+    }
+
+    .prose-content p {
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .prose-content ul, .prose-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .prose-content li {
+      font-weight: 300;
+    }
+
+    .prose-contact-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #02040a;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 5rem 0 3rem 0;
+      color: #9ca3af;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .footer-logo {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+    }
+
+    .footer-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-col a {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+      font-weight: 300;
+    }
+
+    .footer-col a:hover {
+      color: #06b6d4;
+    }
+
+    .footer-contact-item {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      font-weight: 300;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+
+    /* Routing utility */
+    .hidden {
+      display: none !important;
+    }
+
+    .view-content {
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile Responsive styling */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 4.5rem;
+        left: 0;
+        width: 100%;
+        background: #030712;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-cta-btn {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
+  <div class="glow-container">
+    <div class="glow-blob glow-blob-1"></div>
+    <div class="glow-blob glow-blob-2"></div>
+    <div class="glow-blob glow-blob-3"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header id="site-header">
+    <div class="container nav-container">
+      <a href="/" class="logo-link" onclick="handleLinkClick(event, '/')">
+        <img src="/logo.jpg" alt="Neurautomation Logo" class="logo-img" />
+        <span>Neurautomation</span>
+      </a>
+      
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="/" onclick="handleLinkClick(event, '/')" class="nav-item-home">Início</a></li>
+        <li><a href="#solucoes" onclick="scrollToSection(event, 'solucoes')">Soluções</a></li>
+        <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
+        <li><a href="/etica" onclick="handleLinkClick(event, '/etica')" class="nav-item-etica">Código de Ética</a></li>
+      </ul>
+
+      <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">
+        Falar com a Equipe
+      </a>
+
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN SPA CONTENT VIEWS -->
+  <main>
+    
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view-content">
+      
+      <!-- Hero Section -->
+      <section class="hero container">
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          Novidade: Agente de Vendas 24/7
+        </div>
+        
+        <h1>Superapp de Educação e<br/><span class="gradient-text">Agentes de IA</span> para Empresas</h1>
+        
+        <p class="hero-subtitle">
+          Automatize o que é repetitivo e foque no que importa. Desenvolvemos produtos, assistentes inteligentes e automações no WhatsApp que ajudam pessoas e pequenos negócios a crescer de verdade.
+        </p>
+        
+        <div class="hero-ctas">
+          <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Agendar Demo
+          </a>
+          <a href="#solucoes" onclick="scrollToSection(event, 'solucoes')" class="btn btn-secondary">
+            Ver Soluções
+          </a>
+        </div>
+        
+        <div class="hero-showcase">
+          <div class="hero-showcase-bg-glow"></div>
+          <div class="logo-showcase-card">
+            <img src="/logo.jpg" alt="Neurautomation Icon" class="logo-showcase-img" />
+            <div class="logo-showcase-title">neurautomation</div>
+            <div class="logo-showcase-subtitle">N8N | IA PROGRAMAÇÃO</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social Proof / Integrations Section -->
+      <section class="social-proof">
+        <div class="container">
+          <p>Empresas e tecnologias integradas</p>
+          <div class="marquee">
+            <div class="partner-logo">
+              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v7.029C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
+              Meta-Safe
+            </div>
+            <div class="partner-logo">
+              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Integridade de Código
+            </div>
+            <div class="partner-logo">
+              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M19.05 4.91A11.905 11.905 0 0 0 10.5 1.5C3.89 1.5.5 6.89.5 13.5c0 2.11.54 4.17 1.57 6.01L.5 23.5l4.13-1.08c1.78.97 3.79 1.48 5.82 1.48 6.61 0 12-5.39 12-12 0-3.2-1.25-6.21-3.4-8.39zM10.5 21.9c-1.8 0-3.56-.48-5.11-1.39l-.37-.22-2.45.64.65-2.39-.24-.38A9.92 9.92 0 0 1 1.5 13.5C1.5 7.99 5.99 3.5 11.5 3.5c2.67 0 5.18 1.04 7.07 2.93 1.89 1.89 2.93 4.4 2.93 7.07 0 5.51-4.49 10-10 10zm5.49-7.51c-.3-.15-1.78-.88-2.07-.99-.3-.11-.51-.16-.72.15-.22.3-.83 1.05-1.02 1.26-.18.22-.37.24-.67.09-1.36-.68-2.38-1.2-3.32-2.82-.25-.43.25-.4.72-1.35.08-.16.04-.3-.02-.45-.06-.15-.52-1.25-.72-1.72-.2-.48-.43-.41-.59-.42-.15 0-.33-.01-.51-.01s-.48.07-.73.34c-.26.27-.99.97-.99 2.37s1.02 2.75 1.17 2.95c.15.2 2.01 3.07 4.87 4.31.68.29 1.22.47 1.63.6 0 0 .97.39 1.34.33.41-.06 1.78-.73 2.03-1.43.25-.69.25-1.29.18-1.42-.07-.13-.26-.21-.56-.36z"/></svg>
+              WhatsApp Business API
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solutions Section -->
+      <section class="section container" id="solucoes">
+        <div class="section-header">
+          <h2>Soluções Digitais & Inteligentes</h2>
+          <p>Tornamos a tecnologia e a inteligência artificial acessíveis para impulsionar a produtividade do seu dia a dia.</p>
+        </div>
+        
+        <div class="grid-container">
+          <!-- Card 1 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3>Estudar com Facilidade</h3>
+            <p>Acesse conteúdos didáticos estruturados, diretos ao ponto e pensados para acelerar radicalmente o seu processo de aprendizado técnico.</p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><rect x="3" y="4" width="18" height="15" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="4"></line><line x1="8" y1="2" x2="8" y2="4"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <h3>Organizar o Trabalho</h3>
+            <p>Tenha acesso a ferramentas e setups digitais integrados para estruturar suas rotinas de trabalho e escalar o seu foco e sua produtividade.</p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3>Economizar Tempo</h3>
+            <p>Automatize fluxos mecânicos e processos redundantes para liberar o seu tempo e o da sua equipe para focar no que realmente gera receita.</p>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zD6 21a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3v12a3 3 0 0 0 3 3z"/></svg>
+            </div>
+            <h3>Aprender Habilidades</h3>
+            <p>Treinamentos práticos e mentorias focadas em ferramentas modernas e de rápida adoção no mercado de tecnologia, IA e nocode.</p>
+          </div>
+          
+          <!-- Card 5 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3>Melhorar Atendimentos</h3>
+            <p>Assistentes virtuais customizados e integrados para dar suporte, triagem de leads e respostas qualificadas 24 horas por dia, 7 dias por semana.</p>
+          </div>
+          
+          <!-- Card 6 -->
+          <div class="glass-card">
+            <div class="card-icon-container">
+              <svg class="card-icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </div>
+            <h3>Automatizar Rotinas</h3>
+            <p>Conecte seus sistemas (CRMs, planilhas e e-mails) de maneira automática e deixe a tecnologia estruturar seus bastidores para você crescer.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products & Formats Section -->
+      <section class="section container">
+        <div class="section-header">
+          <h2>Nossos Formatos e Entregas</h2>
+          <p>Disponibilizamos tecnologia e metodologia em formatos simples para aplicação ágil.</p>
+        </div>
+        
+        <div class="grid-container">
+          <div class="glass-card">
+            <h3>Ebooks e Guias</h3>
+            <p>Manuais compactos e dinâmicos, no formato passo a passo, focados em soluções imediatas para dores reais de produtividade e no-code.</p>
+          </div>
+          <div class="glass-card">
+            <h3>Cursos Rápidos</h3>
+            <p>Aulas práticas estruturadas direto na tela das ferramentas, permitindo que você aprenda a automatizar rotinas no seu próprio tempo de estudo.</p>
+          </div>
+          <div class="glass-card">
+            <h3>Assistentes Virtuais & WhatsApp</h3>
+            <p>Sistemas integrados de inteligência artificial (n8n, OpenAI, etc.) atuando de forma inteligente no canal oficial do seu WhatsApp para otimizar processos comerciais.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Philosophy & AI Functionality Section -->
+      <section class="section container" id="como-funciona">
+        <div class="section-header">
+          <h2>Como Nossas IAs Funcionam</h2>
+          <p>Segurança, ética e conformidade digital em primeiro lugar.</p>
+        </div>
+        
+        <div class="philosophy-grid">
+          <div class="philosophy-info">
+            <h3>Tecnologia Acessível, Humana e Útil</h3>
+            <p>
+              Acreditamos que a tecnologia e a inteligência artificial só agregam valor quando são transparentes e melhoram a rotina de quem as usa. Criamos assistentes para dar suporte e otimizar rotinas burocráticas, sem usar promessas milagrosas.
+            </p>
+            <p>
+              Seguimos as políticas de conformidade da Meta e do WhatsApp Business API, desenvolvendo de acordo com o que as regras de publicidade e autenticidade comercial exigem.
+            </p>
+            
+            <a href="/etica" onclick="handleLinkClick(event, '/etica')" class="btn btn-secondary">
+              Ler Nosso Código de Ética
+            </a>
+          </div>
+          
+          <div class="philosophy-card">
+            <h4 style="font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 1.5rem;">Diretrizes dos nossos Agentes</h4>
+            <ul class="info-list">
+              <li class="check">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span><strong>Assistentes auxiliares:</strong> Linguagem clara, acolhedora, explicativa e sempre focada em orientar o cliente.</span>
+              </li>
+              <li class="check">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span><strong>Identidade declarada:</strong> As IAs se apresentam abertamente como ferramentas digitais de apoio comercial ou organizacional.</span>
+              </li>
+              <li class="cross">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                <span><strong>Sem falsificação humana:</strong> Nossos agentes virtuais nunca fingem ser humanos reais ou alegam possuir cargos formais humanos.</span>
+              </li>
+              <li class="cross">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                <span><strong>Sem promessas financeiras:</strong> Nossos sistemas recusam gerar e rejeitam qualquer tática de escassez artificial ou promessas de lucros fáceis.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission & Values Section -->
+      <section class="section container">
+        <div class="section-header">
+          <h2>Nossa Filosofia Corporativa</h2>
+          <p>Compromisso sério com o desenvolvimento ético de produtos.</p>
+        </div>
+        
+        <div class="philosophy-grid">
+          <div class="glass-card" style="padding: 3rem;">
+            <h3 style="font-size: 1.5rem; color: white; margin-bottom: 1.5rem;">Missão & Visão</h3>
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #d1d5db; font-weight: 300;">
+              Tornar a tecnologia e o conhecimento em IA acessíveis para todos. Construir soluções digitais inteligentes que simplifiquem as operações de milhares de brasileiros no aprendizado, na organização de negócios e na otimização de rotinas.
+            </p>
+          </div>
+          
+          <div class="values-grid">
+            <div class="value-card">
+              <h4>Acessibilidade</h4>
+              <p>Projetar ferramentas simples de operar, desmistificando o código e a tecnologia.</p>
+            </div>
+            <div class="value-card">
+              <h4>Simplicidade</h4>
+              <p>Aulas, layouts e integrações focadas em resolver, não em gerar novas dúvidas ou processos.</p>
+            </div>
+            <div class="value-card">
+              <h4>Transparência</h4>
+              <p>Alinhamento real e sem rodeios sobre o escopo, limites e atuação dos nossos produtos.</p>
+            </div>
+            <div class="value-card">
+              <h4>Responsabilidade</h4>
+              <p>Adesão plena às boas práticas de privacidade (LGPD) e regras de canais de terceiros.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Legal Warning Section -->
+      <section class="warning-section container">
+        <div class="warning-card">
+          <div class="warning-icon-container">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div class="warning-content">
+            <h3>Aviso Importante & Regulatório</h3>
+            <p>
+              A <strong>Neurautomation</strong> desenvolve ferramentas tecnológicas exclusivamente com fins educativos, organizacionais e de apoio à produtividade digital. Nossos produtos e assistentes virtuais de inteligência artificial:
+            </p>
+            <ul>
+              <li><strong>Não garantem resultados financeiros:</strong> Não prometemos retornos, crescimento de vendas garantido ou resultados profissionais pré-determinados.</li>
+              <li><strong>Não substituem profissionais qualificados:</strong> Nossos robôs e assistentes são voltados à triagem e automação de rotinas de atendimento básico. Não oferecemos aconselhamento nas áreas médica, terapêutica, de saúde, jurídica, de engenharia ou financeira.</li>
+              <li><strong>Esforço individual:</strong> Todos os resultados de aprendizado dependem da dedicação, estudo e aplicação prática de cada usuário em seus respectivos negócios.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Call to Action -->
+      <section class="container" style="margin-top: 4rem;">
+        <div class="cta-banner">
+          <h2>Pronto para Otimizar Seus Processos?</h2>
+          <p>Implemente tecnologia simples, humana e desenvolvida sob medida para a produtividade da sua empresa no dia a dia.</p>
+          <div class="cta-banner-buttons">
+            <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Falar com a Equipe no WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- VIEW: TERMOS DE USO -->
+    <div id="view-termos" class="view-content container hidden">
+      <section class="prose-section">
+        <h1 class="prose-title">Termos de Uso</h1>
+        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        
+        <div class="prose-content">
+          <h2>1. Aceitação dos Termos</h2>
+          <p>
+            Ao acessar, navegar ou utilizar o site da <strong>NEURAUTOMATION LTDA</strong> ("Neurautomation"), você reconhece que leu, compreendeu e concorda em estar vinculado a estes Termos de Uso, bem como a todas as leis e regulamentos aplicáveis. Se você não concorda com qualquer um dos termos estipulados nesta página, solicitamos que não continue a navegar pelo nosso site ou a usufruir das nossas ferramentas e serviços.
+          </p>
+          
+          <h2>2. Serviços Oferecidos</h2>
+          <p>
+            A Neurautomation fornece soluções de automação comercial, assistentes virtuais baseados em inteligência artificial e produtos informacionais ou educacionais (como e-books, manuais e guias práticos). Nossos produtos são desenhados para otimizar fluxos operacionais internos, triagem de atendimentos e apoiar o aprendizado em tecnologia digital. Nossos serviços são ferramentas de apoio e dependem da infraestrutura de terceiros (como a API do WhatsApp/Meta, servidores de hospedagem e conectividade externa).
+          </p>
+          
+          <h2>3. Uso Permitido & Conduta</h2>
+          <p>
+            Ao utilizar o site ou produtos da Neurautomation, você concorda em agir em plena conformidade legal. É estritamente proibido:
+          </p>
+          <ul>
+            <li>Utilizar nossos assistentes virtuais ou integrações para enviar mensagens em massa indesejadas (spam) ou violar os termos de serviço e diretrizes de plataforma do WhatsApp/Meta.</li>
+            <li>Praticar qualquer conduta fraudulenta, que cause dano a servidores ou tente obter acessos não autorizados.</li>
+            <li>Usar nossos materiais intelectuais para criar serviços concorrentes diretos baseados em cópia literal de nossos e-books ou códigos proprietários.</li>
+          </ul>
+          
+          <h2>4. Propriedade Intelectual</h2>
+          <p>
+            Todo o conteúdo disponibilizado em nosso portal e em nossos infoprodutos (incluindo o logotipo da Neurautomation, layouts visuais, textos explicativos, designs gráficos e estruturas de código de fluxo de automação) constitui propriedade exclusiva da Neurautomation ou de seus respectivos licenciadores. Estes materiais estão sob a tutela da legislação brasileira de direitos autorais e propriedade intelectual, sendo proibida a reprodução ou exploração comercial não autorizada por escrito.
+          </p>
+          
+          <h2>5. Limitação de Responsabilidade</h2>
+          <p>
+            A Neurautomation atua com empenho para entregar soluções estáveis e seguras. No entanto, por utilizarmos APIs e serviços de terceiros (como OpenAI, Meta, WhatsApp, n8n cloud, e provedores de hospedagem), não nos responsabilizamos por perdas de conexão temporárias, instabilidades operacionais em plataformas externas ou decisões comerciais e financeiras tomadas com base em dados coletados por nossas ferramentas. Nossas IAs não substituem análises humanas especializadas.
+          </p>
+          
+          <h2>6. Alterações nos Termos</h2>
+          <p>
+            Reservamo-nos o direito de ajustar, expandir ou revisar estes Termos de Uso a qualquer momento. Quaisquer modificações efetuadas surtem efeitos jurídicos imediatos assim que publicadas em nosso site oficial. O fato de continuar a utilizar nosso site ou ferramentas após a publicação de novos termos configura consentimento e concordância expressa com as modificações aplicadas.
+          </p>
+          
+          <div class="prose-contact-box">
+            <h3 style="font-weight: 700; color: white; margin-bottom: 0.5rem;">Dúvidas e Contato</h3>
+            <p style="font-size: 0.9rem; color: #9ca3af; margin-bottom: 0.5rem;">
+              Para esclarecimentos sobre estes Termos de Uso, entre em contato através de nossa assessoria comercial e jurídica:
+            </p>
+            <p style="font-size: 0.9rem; color: #d1d5db;">
+              <strong>E-mail:</strong> contato@neurautomation.com<br/>
+              <strong>Telefone/WhatsApp:</strong> 11 93428-1525<br/>
+              <strong>Endereço comercial:</strong> Av. Cásper Líbero, 538, Sala 42 B, Centro, São Paulo - SP, CEP 01033-000
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: POLITICA DE PRIVACIDADE -->
+    <div id="view-privacidade" class="view-content container hidden">
+      <section class="prose-section">
+        <h1 class="prose-title">Política de Privacidade</h1>
+        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        
+        <div class="prose-content">
+          <h2>1. Introdução</h2>
+          <p>
+            A <strong>NEURAUTOMATION LTDA</strong> tem como pilar institucional o respeito pela privacidade e a proteção de dados de seus clientes, usuários e parceiros comerciais. Esta Política de Privacidade serve para detalhar, de forma clara e objetiva, como as informações que você compartilha em nosso site ou nas nossas integrações de atendimento são coletadas, armazenadas, tratadas e resguardadas, em estrito cumprimento às diretrizes da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+          </p>
+          
+          <h2>2. Coleta de Dados</h2>
+          <p>
+            Nós podemos coletar informações fornecidas voluntariamente por você ao interagir com nosso site, como ao clicar em botões de contato ou se cadastrar para demonstrações. As informações coletadas incluem:
+          </p>
+          <ul>
+            <li><strong>Dados cadastrais básicos:</strong> Nome completo, endereço de e-mail e número de telefone celular (WhatsApp) informados ao iniciar conversas ou manifestar interesse comercial.</li>
+            <li><strong>Histórico de conversações comerciais:</strong> Mensagens enviadas aos nossos assistentes virtuais de teste no WhatsApp, com o objetivo único de calibrar o atendimento comercial e prestar o suporte técnico solicitado.</li>
+            <li><strong>Metadados de navegação:</strong> Endereço IP aproximado, dados de cookies do navegador e páginas visitadas para fins de otimização técnica e tráfego.</li>
+          </ul>
+          
+          <h2>3. Finalidade e Uso das Informações</h2>
+          <p>
+            Todo processamento de dados realizado pela Neurautomation baseia-se em finalidades legítimas. Tratamos seus dados para:
+          </p>
+          <ul>
+            <li>Fornecer e aprimorar a funcionalidade de nossas ferramentas e assistentes inteligentes de triagem comercial.</li>
+            <li>Prestar suporte técnico, responder a dúvidas operacionais e agendar demonstrações de fluxos no-code.</li>
+            <li>Enviar novidades sobre novos materiais educacionais e recursos de automação de WhatsApp, desde que expressamente consentido pelo usuário.</li>
+            <li>Cumprir obrigações regulatórias, legais e de auditoria de segurança da informação.</li>
+          </ul>
+          
+          <h2>4. Compartilhamento de Dados</h2>
+          <p>
+            A Neurautomation compromete-se a não vender, alugar ou transferir suas informações pessoais a terceiros com intuitos de publicidade ou marketing sem o seu consentimento explícito. O compartilhamento ocorre apenas quando indispensável à operação do serviço (como com provedores de nuvem, plataformas seguras de bancos de dados ou APIs oficiais como a da OpenAI e da Meta), todos protegidos por rigorosos contratos de confidencialidade e segurança digital.
+          </p>
+          
+          <h2>5. Segurança da Informação</h2>
+          <p>
+            Empregamos medidas técnicas e administrativas compatíveis com os padrões do mercado de tecnologia para proteger seus dados contra incidentes de acesso não autorizado, destruição acidental, alteração ou vazamento. Os dados em trânsito são criptografados (HTTPS/SSL) e o acesso a bancos de dados é restrito a operadores comerciais devidamente autorizados.
+          </p>
+          
+          <h2>6. Seus Direitos (LGPD)</h2>
+          <p>
+            Em conformidade com a LGPD, você possui controle integral sobre seus dados pessoais. A qualquer momento, você pode solicitar à Neurautomation:
+          </p>
+          <ul>
+            <li>A confirmação da existência de tratamento e o acesso facilitado aos seus dados armazenados em nossos sistemas.</li>
+            <li>A correção de dados incompletos, desatualizados ou incorretos.</li>
+            <li>A revogação do consentimento para envio de comunicados e a exclusão definitiva de seus dados do nosso cadastro de contatos.</li>
+          </ul>
+          
+          <div class="prose-contact-box">
+            <h3 style="font-weight: 700; color: white; margin-bottom: 0.5rem;">Encarregado de Proteção de Dados (DPO)</h3>
+            <p style="font-size: 0.9rem; color: #9ca3af; margin-bottom: 0.5rem;">
+              Para exercer seus direitos de privacidade ou tirar dúvidas sobre como seus dados são coletados, fale diretamente com o nosso Encarregado pelo tratamento de dados pessoais (DPO):
+            </p>
+            <p style="font-size: 0.9rem; color: #d1d5db;">
+              <strong>E-mail de privacidade:</strong> contato@neurautomation.com
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: CÓDIGO DE ÉTICA -->
+    <div id="view-etica" class="view-content container hidden">
+      <section class="prose-section">
+        <h1 class="prose-title">Código de Ética e Conduta</h1>
+        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        
+        <div class="prose-content">
+          <p style="font-size: 1.15rem; color: #d1d5db; margin-bottom: 2.5rem; font-weight: 300;">
+            A <strong>NEURAUTOMATION LTDA</strong> pauta todas as suas relações de mercado, desenvolvimento de softwares e relacionamentos institucionais sobre princípios inegociáveis de transparência, responsabilidade ética e respeito irrestrito às normas de publicidade comercial e plataformas de terceiros.
+          </p>
+          
+          <h2>1. Princípios Fundamentais</h2>
+          <p>
+            Nossa missão corporativa baseia-se em empoderar indivíduos e pequenas empresas através do uso saudável e prático da tecnologia e da inteligência artificial. Por isso:
+          </p>
+          <ul>
+            <li>Rejeitamos veementemente qualquer técnica comercial ou tecnológica de publicidade que induza o usuário ao erro, que manipule dados ou que promova falsas expectativas.</li>
+            <li>Nossos infoprodutos e assistentes virtuais são concebidos com foco no desenvolvimento educativo, prático e na utilidade real da inteligência artificial aplicada ao trabalho diário, afastando-se de discursos de ganhos fáceis ou promessas irreais.</li>
+          </ul>
+          
+          <h2>2. Nossos Compromissos de Mercado</h2>
+          <p>
+            Para garantir a transparência comercial em nossas operações e nas soluções desenvolvidas para nossos clientes, assumimos publicamente os seguintes compromissos:
+          </p>
+          <ol>
+            <li><strong>Ausência de promessas de ganhos financeiros:</strong> Jamais criamos ou toleramos promessas de retornos financeiros garantidos, enriquecimento sem esforço ou lucros irreais através das nossas soluções digitais.</li>
+            <li><strong>Não substituição de conselhos profissionais especializados:</strong> Nossos agentes virtuais são programados e instruídos para atuar unicamente na triagem comercial primária ou suporte operacional básico. Eles não realizam aconselhamento técnico qualificado nem substituem a orientação de especialistas regulamentados.</li>
+            <li><strong>Declaração explícita de automação:</strong> Garantimos que os nossos agentes inteligentes instalados em canais de atendimento declarem abertamente sua identidade como inteligências artificiais na mensagem de boas-vindas, evitando simular identidade humana real sem aviso prévio.</li>
+            <li><strong>Recusa a técnicas de pressão indevida:</strong> Não empregamos em nossos roteiros comerciais gatilhos de escassez artificial extrema, constrangimento de consumo ou qualquer pressão coercitiva no processo decisório do cliente.</li>
+          </ol>
+          
+          <h2>3. Conformidade com Plataformas (Meta & WhatsApp Business)</h2>
+          <p>
+            Desenvolvemos integrações tecnológicas em estrito respeito às políticas comerciais, diretrizes de publicação e termos de uso definidos pela Meta e pelo WhatsApp Business. Nossos agentes comerciais operam estritamente dentro da legalidade das APIs autorizadas, respeitando a privacidade do usuário do WhatsApp e promovendo uma comunicação comercial limpa e consensual.
+          </p>
+          
+          <h2>4. Revisão Contínua</h2>
+          <p>
+            Este Código de Ética e Conduta é revisado semestralmente pela diretoria comercial da Neurautomation para assegurar que as nossas soluções, parcerias e códigos-fonte evoluam em perfeita harmonia com o desenvolvimento do ecossistema global de inteligência artificial e em sintonia com a regulação de dados brasileira.
+          </p>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-brand-title" onclick="handleLinkClick(event, '/')">
+          <img src="/logo.jpg" alt="Neurautomation Footer Logo" class="footer-logo" />
+          <span>Neurautomation</span>
+        </a>
+        <p class="footer-desc">
+          Tecnologia que conecta pessoas, conhecimento e oportunidades. Desenvolvemos soluções digitais inteligentes e éticas para apoiar o seu crescimento comercial.
+        </p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Soluções</h4>
+        <ul>
+          <li><a href="/" onclick="handleLinkClick(event, '/')">Início</a></li>
+          <li><a href="#solucoes" onclick="scrollToSection(event, 'solucoes')">O que fazemos</a></li>
+          <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como funciona</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/termos" onclick="handleLinkClick(event, '/termos')">Termos de Uso</a></li>
+          <li><a href="/privacidade" onclick="handleLinkClick(event, '/privacidade')">Política de Privacidade</a></li>
+          <li><a href="/etica" onclick="handleLinkClick(event, '/etica')">Código de Ética</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul style="gap: 1.25rem;">
+          <li class="footer-contact-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <span>contato@neurautomation.com</span>
+          </li>
+          <li class="footer-contact-item">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>Av. Cásper Líbero, 538, Sala 42 B, Centro, São Paulo - SP</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="container footer-bottom">
+      <p>© 2026 NEURAUTOMATION LTDA. Todos os direitos reservados.</p>
+      <p>CNPJ: 54.498.411/0001-38</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Router and UI logic -->
+  <script>
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('site-header');
+      if (window.scrollY > 20) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Client-side Router Logic
+    function handleRoute() {
+      const path = window.location.pathname;
+      
+      // Hide mobile menu if open
+      navMenu.classList.remove('active');
+
+      // Hide all views
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-termos').classList.add('hidden');
+      document.getElementById('view-privacidade').classList.add('hidden');
+      document.getElementById('view-etica').classList.add('hidden');
+
+      // Remove active classes
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+      // Show matching view
+      if (path === '/termos') {
+        document.getElementById('view-termos').classList.remove('hidden');
+        document.title = "Termos de Uso - Neurautomation";
+      } else if (path === '/privacidade') {
+        document.getElementById('view-privacidade').classList.remove('hidden');
+        document.title = "Política de Privacidade - Neurautomation";
+      } else if (path === '/etica') {
+        document.getElementById('view-etica').classList.remove('hidden');
+        document.querySelector('.nav-item-etica').classList.add('active');
+        document.title = "Código de Ética - Neurautomation";
+      } else {
+        // Fallback to Home
+        document.getElementById('view-home').classList.remove('hidden');
+        document.querySelector('.nav-item-home').classList.add('active');
+        document.title = "Neurautomation - Agentes de IA & Automação";
+      }
+
+      // Scroll window to top
+      window.scrollTo(0, 0);
+    }
+
+    function handleLinkClick(e, path) {
+      e.preventDefault();
+      window.history.pushState(null, '', path);
+      handleRoute();
+    }
+
+    function scrollToSection(e, sectionId) {
+      // If we are not on home page, navigate to home first, then scroll
+      if (window.location.pathname !== '/') {
+        e.preventDefault();
+        window.history.pushState(null, '', '/');
+        handleRoute();
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        // We are already on home, scroll directly
+        e.preventDefault();
+        navMenu.classList.remove('active');
+        const element = document.getElementById(sectionId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Initialize Router
+    window.addEventListener('popstate', handleRoute);
+    document.addEventListener('DOMContentLoaded', handleRoute);
+  </script>
 </body>
 
 </html>
