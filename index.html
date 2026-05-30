@@ -340,6 +340,10 @@
       align-items: center;
     }
 
+    .mobile-only-cta {
+      display: none !important;
+    }
+
     .menu-toggle {
       display: none;
       background: none;
@@ -351,6 +355,11 @@
 
     /* Hero Layout (Side-by-Side) */
     .hero {
+      padding-top: 6.5rem;
+      padding-bottom: 6.5rem;
+    }
+
+    #video-demonstracao {
       padding-top: 11rem;
       padding-bottom: 6.5rem;
       background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08) 0%, rgba(3,7,18,0) 60%);
@@ -500,6 +509,8 @@
       font-family: Consolas, Monaco, 'Courier New', monospace;
       line-height: 1.4;
       text-align: left;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     /* Video Section Styling */
@@ -511,6 +522,7 @@
       overflow: hidden;
       box-shadow: var(--shadow-premium);
       background-color: var(--bg-dark);
+      width: 100%;
     }
 
     .video-container {
@@ -574,6 +586,8 @@
       font-size: 1.1rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.9);
+      padding: 0 1rem;
+      text-align: center;
     }
 
     /* Channels Trust Bar */
@@ -1211,6 +1225,7 @@
       border-radius: var(--radius-xl);
       padding: 3rem;
       box-shadow: var(--shadow-premium);
+      width: 100%;
     }
 
     .form-note {
@@ -1229,13 +1244,13 @@
       width: 4.5rem;
       height: 4.5rem;
       border-radius: 50%;
-      background-color: rgba(16, 185, 129, 0.15);
-      color: var(--accent);
+      background-color: rgba(37, 99, 235, 0.15);
+      color: #60a5fa;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 0.5rem;
-      border: 1px solid rgba(16, 185, 129, 0.25);
+      border: 1px solid rgba(37, 99, 235, 0.25);
     }
 
     .success-icon-wrapper svg {
@@ -1482,13 +1497,25 @@
         font-size: 2rem;
       }
 
+      #video-demonstracao {
+        padding-top: 7.5rem !important;
+        padding-bottom: 4rem !important;
+      }
+
+      .hero {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+      }
+
       .nav-links {
         display: none;
         position: absolute;
         top: 4.5rem;
         left: 0;
         width: 100%;
-        background: var(--bg-primary);
+        background: rgba(3, 7, 18, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border-light);
         padding: 2.5rem;
         flex-direction: column;
@@ -1499,6 +1526,17 @@
 
       .nav-links.active {
         display: flex;
+      }
+
+      .mobile-only-cta {
+        display: block !important;
+        margin-top: 0.5rem;
+      }
+
+      .mobile-only-cta .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
       }
 
       .header-cta {
@@ -1571,6 +1609,49 @@
         gap: 3rem;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem !important;
+      }
+      .hero-subtitle {
+        font-size: 0.975rem !important;
+      }
+      .section-header h2 {
+        font-size: 1.75rem !important;
+      }
+      .pain-card, .solution-card, .plan-card {
+        padding: 1.5rem !important;
+      }
+      .segment-card, .case-card {
+        padding: 1.25rem !important;
+      }
+      .case-header {
+        padding: 1rem 1.25rem !important;
+      }
+      .case-body {
+        padding: 1.25rem !important;
+      }
+      .form-container {
+        padding: 2rem 1.25rem !important;
+      }
+      .hero-console {
+        height: 280px !important;
+      }
+      .terminal-line {
+        font-size: 0.725rem !important;
+      }
+      .btn {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.9rem !important;
+      }
+      .timeline-dot {
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+    }
   </style>
 </head>
 
@@ -1593,11 +1674,17 @@
       
       <ul class="nav-links" id="nav-menu">
         <li><a href="/" onclick="handleLinkClick(event, '/')" class="nav-item-home">Início</a></li>
+        <li><a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')">Vídeo</a></li>
         <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
         <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
         <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
         <li><a href="#faq" onclick="scrollToSection(event, 'faq')">FAQ</a></li>
         <li><a href="#contato" onclick="scrollToSection(event, 'contato')">Contato</a></li>
+        <li class="mobile-only-cta">
+          <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary">
+            Diagnóstico Grátis
+          </a>
+        </li>
       </ul>
 
       <div class="header-cta">
@@ -1622,8 +1709,30 @@
     <!-- VIEW: HOME -->
     <div id="view-home" class="view-content">
       
+      <!-- SEÇÃO VÍDEO DE APRESENTAÇÃO (PRIMEIRA A APARECER) -->
+      <section class="section" id="video-demonstracao">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Apresentação</span>
+            <h2>Veja o sistema rodando na prática</h2>
+            <p>Assista ao vídeo para entender como a nossa inteligência artificial capta e agenda consultas para sua clínica sem complicação.</p>
+          </div>
+          
+          <div class="video-wrapper">
+            <div class="video-container">
+              <div class="video-placeholder" onclick="alert('Vídeo de demonstração: Insira seu link do YouTube ou Vimeo no iframe dentro de index.html')">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <div class="video-overlay-text">Clique para assistir ao vídeo de apresentação</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- HERO SECTION -->
-      <section class="hero container" id="home">
+      <section class="hero bg-secondary container" id="home">
         <div class="hero-grid-layout">
           <!-- Left Text content -->
           <div class="hero-content-left">
@@ -1699,7 +1808,7 @@
       </section>
 
       <!-- SEÇÃO A DOR (PROBLEMA) -->
-      <section class="section bg-secondary">
+      <section class="section">
         <div class="container">
           <div class="section-header">
             <span class="badge" style="background-color: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.25);">O Gargalo Silencioso</span>
@@ -1738,30 +1847,8 @@
         </div>
       </section>
 
-      <!-- SEÇÃO VÍDEO DE APRESENTAÇÃO -->
-      <section class="section bg-secondary" id="video-demonstracao">
-        <div class="container">
-          <div class="section-header">
-            <span class="badge">Apresentação</span>
-            <h2>Veja o sistema rodando na prática</h2>
-            <p>Assista ao vídeo para entender como a nossa inteligência artificial capta e agenda consultas para sua clínica sem complicação.</p>
-          </div>
-          
-          <div class="video-wrapper">
-            <div class="video-container">
-              <div class="video-placeholder" onclick="alert('Vídeo de demonstração: Insira seu link do YouTube ou Vimeo no iframe dentro de index.html')">
-                <div class="video-play-btn">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                </div>
-                <div class="video-overlay-text">Clique para assistir ao vídeo de apresentação</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- SEÇÃO A SOLUÇÃO (COMO FUNCIONA) -->
-      <section class="section" id="como-funciona">
+      <section class="section bg-secondary" id="como-funciona">
         <div class="container">
           <div class="section-header">
             <span class="badge">Automação Inteligente</span>
@@ -1828,7 +1915,7 @@
       </section>
 
       <!-- SEÇÃO ESCALABILIDADE (SEGMENTOS ATENDIDOS) -->
-      <section class="section bg-secondary">
+      <section class="section">
         <div class="container">
           <div class="section-header">
             <span class="badge">Nicho & Escalabilidade</span>
@@ -1897,7 +1984,7 @@
       </section>
 
       <!-- SEÇÃO PROVA SOCIAL (RESULTADOS) -->
-      <section class="section" id="resultados">
+      <section class="section bg-secondary" id="resultados">
         <div class="container">
           <div class="section-header">
             <span class="badge">Casos de Sucesso</span>
@@ -1962,7 +2049,7 @@
       </section>
 
       <!-- SEÇÃO PLANOS E PREÇOS -->
-      <section class="section bg-secondary" id="planos">
+      <section class="section" id="planos">
         <div class="container">
           <div class="section-header">
             <span class="badge">Nossos Planos</span>
@@ -1978,9 +2065,10 @@
               <p class="plan-desc">Para clínicas em estágio inicial que precisam estruturar canais básicos de atração.</p>
               <ul class="plan-features">
                 <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conteúdo para Instagram (30 posts/mês)</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Meta Ads (Facebook e Instagram)</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Site integrado com agendamentos e CRM</li>
                 <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Google Meu Negócio estruturado</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Relatório mensal de resultados</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Suporte por WhatsApp comercial</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Relatório mensal de resultados e suporte</li>
               </ul>
               <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-secondary plan-cta">Escolher Starter</a>
             </div>
@@ -2026,7 +2114,7 @@
       </section>
 
       <!-- SEÇÃO COMO FUNCIONA NA PRÁTICA (TIMELINE) -->
-      <section class="section">
+      <section class="section bg-secondary">
         <div class="container">
           <div class="section-header">
             <span class="badge">Implantação Rápida</span>
@@ -2070,7 +2158,7 @@
       </section>
 
       <!-- SEÇÃO FAQ (OBJECÕES) -->
-      <section class="section bg-secondary" id="faq">
+      <section class="section" id="faq">
         <div class="container">
           <div class="section-header">
             <span class="badge">Perguntas Frequentes</span>
@@ -2161,7 +2249,7 @@
       </section>
 
       <!-- SEÇÃO CONTATO (WHATSAPP DIRETO) -->
-      <section class="section" id="contato">
+      <section class="section bg-secondary" id="contato">
         <div class="container">
           <div class="section-header">
             <span class="badge">Diagnóstico Grátis</span>
@@ -2327,6 +2415,7 @@
         <h4>Navegação</h4>
         <ul>
           <li><a href="/" onclick="handleLinkClick(event, '/')">Início</a></li>
+          <li><a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')">Vídeo</a></li>
           <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
           <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
           <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
