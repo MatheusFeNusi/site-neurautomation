@@ -6,14 +6,64 @@
   <link rel="icon" type="image/jpeg" href="/logo.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Typography -->
+  <!-- SEO Meta Tags -->
+  <title>Neurautomation - Marketing com Inteligência Artificial para Clínicas Médicas e Estética</title>
+  <meta name="description" content="Atraímos pacientes novos, respondemos mensagens 24 horas e reativamos clientes antigos automaticamente. Marketing com IA para clínicas médicas e de estética no Brasil." />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Neurautomation - Marketing com Inteligência Artificial para Clínicas" />
+  <meta property="og:description" content="Eu trago a paciente. Sua clínica responde. Você só atende. Automação completa de captação e reativação." />
+  <meta property="og:image" content="/logo.jpg" />
+
+  <!-- Typography (Google Fonts Outfit and Inter) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <title>Neurautomation - Agentes de IA & Automação</title>
-  
   <style>
+    /* Design Tokens / CSS Variables */
+    :root {
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --bg-accent-light: #eff6ff;
+      --bg-dark: #0f172a;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --text-white: #ffffff;
+
+      --primary: #2563eb;       /* Electric Blue */
+      --primary-hover: #1d4ed8;
+      --primary-glow: rgba(37, 99, 235, 0.15);
+
+      --accent: #10b981;        /* Emerald Green */
+      --accent-hover: #059669;
+      --accent-glow: rgba(16, 185, 129, 0.12);
+
+      --border-light: #e2e8f0;
+      --border-focus: #cbd5e1;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.04), 0 10px 10px -5px rgba(15, 23, 42, 0.02);
+      --shadow-premium: 0 30px 60px -15px rgba(15, 23, 42, 0.08);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 9999px;
+      
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     /* Reset & Base Styles */
     * {
       box-sizing: border-box;
@@ -21,96 +71,161 @@
       padding: 0;
     }
 
-    html, body {
-      font-family: 'Inter', sans-serif;
-      background-color: #030712;
-      color: #f3f4f6;
+    html {
       scroll-behavior: smooth;
       overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     h1, h2, h3, h4, .font-display {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-title);
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
     }
 
-    /* Glow Blobs background */
-    .glow-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
     }
 
-    .glow-blob {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(0,0,0,0) 100%);
-      filter: blur(80px);
-      animation: float 20s infinite alternate ease-in-out;
-    }
-
-    .glow-blob-1 {
-      top: -200px;
-      left: -100px;
-    }
-
-    .glow-blob-2 {
-      top: 600px;
-      right: -200px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(59, 130, 246, 0.05) 50%, rgba(0,0,0,0) 100%);
-      animation-delay: -5s;
-    }
-
-    .glow-blob-3 {
-      top: 1500px;
-      left: -200px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 50%, rgba(0,0,0,0) 100%);
-      animation-delay: -10s;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, 60px) scale(1.1); }
-      100% { transform: translate(-20px, -40px) scale(0.9); }
-    }
-
-    /* Layout Utility */
+    /* Layout Utilities */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
       position: relative;
-      z-index: 1;
     }
 
     .section {
-      padding: 8rem 0 4rem 0;
+      padding: 7rem 0;
     }
 
-    /* Glassmorphism Header */
+    .bg-secondary {
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .bg-tertiary {
+      background-color: var(--bg-tertiary);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4.5rem auto;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-accent-light);
+      color: var(--primary);
+      font-size: 0.825rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.4; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Premium Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--text-white);
+      box-shadow: 0 4px 14px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--bg-secondary);
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    /* Header & Navigation */
     header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 100;
-      background: rgba(3, 7, 18, 0.7);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: all 0.3s ease;
+      border-bottom: 1px solid var(--border-light);
+      transition: var(--transition);
     }
 
     .header-scrolled {
-      background: rgba(3, 7, 18, 0.9);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-md);
+      padding: 0.25rem 0;
     }
 
     .nav-container {
@@ -124,376 +239,367 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.25rem;
-      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      font-family: var(--font-title);
+      color: var(--text-primary);
     }
 
     .logo-img {
       width: 2.25rem;
       height: 2.25rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
-      object-cover: cover;
+      border-radius: 6px;
+      object-fit: cover;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.25rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
-      text-decoration: none;
-      color: #9ca3af;
+      color: var(--text-secondary);
       font-weight: 500;
       font-size: 0.925rem;
-      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after, .nav-links a.active::after {
+      width: 100%;
     }
 
     .nav-links a:hover, .nav-links a.active {
-      color: #06b6d4;
+      color: var(--text-primary);
     }
 
-    .nav-cta-btn {
-      display: inline-flex;
+    .header-cta {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
-      color: white;
-      font-weight: 600;
-      font-size: 0.875rem;
-      padding: 0.6rem 1.25rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.25);
-    }
-
-    .nav-cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
     }
 
     .menu-toggle {
       display: none;
       background: none;
       border: none;
-      color: white;
+      color: var(--text-primary);
       cursor: pointer;
+      padding: 0.5rem;
     }
 
-    /* Premium Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 1rem 2rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      border: none;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #06b6d4 0%, #7c3aed 100%);
-      color: white;
-      box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.6);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Hero Section */
+    /* Hero Layout (Side-by-Side) */
     .hero {
-      position: relative;
       padding-top: 10rem;
-      padding-bottom: 6rem;
-      text-align: center;
+      padding-bottom: 5.5rem;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.04) 0%, rgba(255,255,255,0) 60%);
     }
 
-    .hero-badge {
-      display: inline-flex;
+    .hero-grid-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3.5rem;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      color: #06b6d4;
-      font-size: 0.825rem;
-      font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 9999px;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      text-align: left;
+      margin-bottom: 4.5rem;
     }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background-color: #06b6d4;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.5); opacity: 0.5; }
-      100% { transform: scale(1); opacity: 1; }
+    .hero-content-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
+      color: var(--text-primary);
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #22d3ee 0%, #c084fc 100%);
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
-      color: #9ca3af;
-      max-width: 800px;
-      margin: 0 auto 3rem auto;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
       line-height: 1.6;
-      font-weight: 300;
+      font-weight: 400;
+      text-align: left;
     }
 
     .hero-ctas {
       display: flex;
+      gap: 1.25rem;
+      margin-bottom: 0;
+    }
+
+    /* Futuristic AI Agent Console */
+    .hero-graphic-right {
+      display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 5rem;
+      align-items: center;
+      width: 100%;
     }
 
-    /* Hero Logo Showcase */
-    .hero-showcase {
-      max-width: 650px;
+    .hero-console {
+      width: 100%;
+      max-width: 480px;
+      height: 360px;
+      background-color: #020617;
+      border: 1px solid #1e293b;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-premium);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .console-header {
+      background-color: #0f172a;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+      user-select: none;
+    }
+
+    .console-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .console-dots .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .console-dots .dot.red { background-color: #ef4444; }
+    .console-dots .dot.yellow { background-color: #fbbf24; }
+    .console-dots .dot.green { background-color: #10b981; }
+
+    .console-title {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .console-status {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #10b981;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pulse-indicator {
+      width: 6px;
+      height: 6px;
+      background-color: #10b981;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    .console-body {
+      flex-grow: 1;
+      padding: 1.25rem;
+      overflow-y: auto;
+      background-color: #030712;
+      scroll-behavior: smooth;
+    }
+
+    .console-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .console-body::-webkit-scrollbar-track {
+      background: #030712;
+    }
+    .console-body::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+
+    .terminal-line {
+      margin-bottom: 0.6rem;
+      font-size: 0.825rem;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    /* Channels Trust Bar */
+    .channels-bar {
+      max-width: 900px;
       margin: 0 auto;
-      position: relative;
-    }
-
-    .hero-showcase-bg-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120%;
-      height: 120%;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(0,0,0,0) 70%);
-      filter: blur(40px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .logo-showcase-card {
-      background: rgba(15, 23, 42, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border-radius: 32px;
-      padding: 3rem;
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
-      position: relative;
-      z-index: 1;
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border-light);
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: border-color 0.5s ease;
+      gap: 1.25rem;
     }
 
-    .logo-showcase-card:hover {
-      border-color: rgba(6, 182, 212, 0.3);
-    }
-
-    .logo-showcase-img {
-      width: 12rem;
-      height: 12rem;
-      border-radius: 2rem;
-      box-shadow: 0 0 40px rgba(6, 182, 212, 0.3), 0 0 80px rgba(124, 58, 237, 0.1);
-      margin-bottom: 2rem;
-      animation: logoFloat 6s ease-in-out infinite;
-    }
-
-    @keyframes logoFloat {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    .logo-showcase-title {
-      font-size: 2rem;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    .logo-showcase-subtitle {
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #06b6d4;
-      font-weight: 700;
-    }
-
-    /* Social Proof Section */
-    .social-proof {
-      padding: 4rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.03);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .social-proof p {
-      font-size: 0.875rem;
-      color: #6b7280;
+    .channels-title {
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    .marquee {
+    .channels-list {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 4rem;
+      gap: 3rem;
       flex-wrap: wrap;
     }
 
-    .partner-logo {
+    .channel-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: #4b5563;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
+      color: var(--text-secondary);
+      transition: var(--transition);
     }
 
-    .partner-logo:hover {
-      color: #9ca3af;
+    .channel-item:hover {
+      color: var(--text-primary);
     }
 
-    .partner-icon {
-      width: 1.5rem;
-      height: 1.5rem;
+    .channel-item svg {
+      width: 1.25rem;
+      height: 1.25rem;
       fill: currentColor;
     }
 
-    /* Glassmorphism Cards */
-    .grid-container {
+    /* Dor (Problems) Section */
+    .pains-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .section-header h2 {
-      font-size: 2.75rem;
-      font-weight: 800;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.01em;
-    }
-
-    .section-header p {
-      font-size: 1.125rem;
-      color: #9ca3af;
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
-
-    .glass-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 24px;
+    .pain-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
       padding: 2.5rem;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-sm);
     }
 
-    .glass-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(6, 182, 212, 0.25);
-      box-shadow: 0 30px 50px -20px rgba(6, 182, 212, 0.15);
+    .pain-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(37, 99, 235, 0.15);
     }
 
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(124, 58, 237, 0.05) 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-    }
-
-    .glass-card:hover::before {
-      opacity: 1;
-    }
-
-    .card-icon-container {
-      width: 3.5rem;
-      height: 3.5rem;
-      background: rgba(6, 182, 212, 0.1);
-      border-radius: 16px;
+    .pain-icon-wrapper {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius-md);
+      background-color: #fee2e2;
+      color: #ef4444;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #22d3ee;
-      border: 1px solid rgba(6, 182, 212, 0.15);
-      transition: all 0.3s ease;
+      flex-shrink: 0;
     }
 
-    .glass-card:hover .card-icon-container {
-      background: rgba(6, 182, 212, 0.2);
-      transform: scale(1.05);
-      color: #fff;
+    .pain-icon-wrapper svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
     }
 
-    .card-icon {
-      width: 1.75rem;
-      height: 1.75rem;
+    .pain-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .pain-card p {
+      font-size: 0.975rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Solução (Solutions) Section */
+    .solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .solution-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-premium);
+      border-color: var(--primary);
+    }
+
+    .solution-icon-wrapper {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: var(--radius-md);
+      background-color: var(--bg-accent-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .solution-card:hover .solution-icon-wrapper {
+      background-color: var(--primary);
+      color: var(--text-white);
+    }
+
+    .solution-icon-wrapper svg {
+      width: 1.6rem;
+      height: 1.6rem;
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
@@ -501,197 +607,571 @@
       stroke-linejoin: round;
     }
 
-    .glass-card h3 {
-      font-size: 1.5rem;
+    .solution-card h3 {
+      font-size: 1.35rem;
       font-weight: 700;
-      color: white;
     }
 
-    .glass-card p {
-      color: #9ca3af;
+    .solution-card p {
       font-size: 0.975rem;
+      color: var(--text-secondary);
       line-height: 1.6;
-      font-weight: 300;
     }
 
-    /* Philosophy & IA Functionality Section */
-    .philosophy-grid {
+    /* Segmentos Section (Niche Expansion) */
+    .segments-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
-    .philosophy-info h3 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: white;
-    }
-
-    .philosophy-info p {
-      color: #9ca3af;
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-
-    .info-list {
-      list-style: none;
+    .segment-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .info-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      color: #d1d5db;
-      font-size: 1rem;
+    .segment-card.active {
+      border: 2px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.05);
     }
 
-    .info-list li svg {
-      flex-shrink: 0;
-      width: 1.25rem;
-      height: 1.25rem;
-      margin-top: 0.2rem;
+    .segment-card.pending {
+      background: rgba(248, 250, 252, 0.6);
+      opacity: 0.8;
+      border-style: dashed;
     }
 
-    .info-list li.check svg {
-      color: #10b981;
-    }
-
-    .info-list li.cross svg {
-      color: #ef4444;
-    }
-
-    .philosophy-card {
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
-      padding: 3rem;
-    }
-
-    /* Grid of Mission & Values */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
-    .value-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 1.5rem;
-    }
-
-    .value-card h4 {
-      font-size: 1.15rem;
+    .segment-status {
+      align-self: flex-start;
+      font-size: 0.7rem;
       font-weight: 700;
-      color: white;
-      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
     }
 
-    .value-card p {
-      font-size: 0.875rem;
-      color: #9ca3af;
-      line-height: 1.5;
+    .active .segment-status {
+      background-color: #dcfce7;
+      color: #15803d;
     }
 
-    /* Warning Card */
-    .warning-section {
-      margin: 4rem 0;
+    .pending .segment-status {
+      background-color: var(--bg-tertiary);
+      color: var(--text-muted);
     }
 
-    .warning-card {
-      background: rgba(245, 158, 11, 0.03);
-      border: 1px solid rgba(245, 158, 11, 0.15);
-      border-radius: 24px;
-      padding: 2.5rem;
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.05);
-    }
-
-    .warning-icon-container {
-      background: rgba(245, 158, 11, 0.1);
-      color: #f59e0b;
-      border-radius: 12px;
-      width: 3rem;
-      height: 3rem;
+    .segment-icon-header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      gap: 0.75rem;
     }
 
-    .warning-content h3 {
-      font-size: 1.25rem;
+    .segment-icon-header svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary);
+    }
+
+    .pending .segment-icon-header svg {
+      color: var(--text-muted);
+    }
+
+    .segment-card h3 {
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #f3f4f6;
-      margin-bottom: 0.75rem;
+    }
+
+    .segment-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Prova Social / Resultados */
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .case-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .case-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-focus);
+    }
+
+    .case-header {
+      padding: 1.75rem 2rem;
+      border-bottom: 1px solid var(--border-light);
+      background-color: var(--bg-secondary);
+    }
+
+    .case-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .warning-content p {
-      color: #d1d5db;
-      font-size: 0.925rem;
-      line-height: 1.6;
-      font-weight: 300;
+    .case-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-top: 0.25rem;
     }
 
-    .warning-content ul {
-      margin-top: 1rem;
-      list-style-type: disc;
-      padding-left: 1.25rem;
+    .case-body {
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      color: #9ca3af;
-      font-size: 0.875rem;
+      gap: 1rem;
+      flex-grow: 1;
     }
 
-    /* Call to Action Banner */
-    .cta-banner {
-      background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.15) 0%, rgba(124, 58, 237, 0.1) 60%, rgba(3, 7, 18, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      padding: 5rem 2.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 6rem;
-    }
-
-    .cta-banner h2 {
-      font-size: 3rem;
+    .case-result {
+      font-size: 1.75rem;
       font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: white;
+      color: var(--primary);
+      font-family: var(--font-title);
+      line-height: 1.2;
     }
 
-    .cta-banner p {
-      font-size: 1.2rem;
-      color: #d1d5db;
-      max-width: 600px;
-      margin: 0 auto 3rem auto;
-      font-weight: 300;
+    .case-detail {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
 
-    .cta-banner-buttons {
+    /* Impact Numbers Bar */
+    .stats-bar {
+      border: 1px solid var(--border-light);
+      background-color: var(--bg-primary);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2rem;
       display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-item:not(:last-child) {
+      border-right: 1px solid var(--border-light);
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    /* Planos e Preços */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+      margin-bottom: 3rem;
+    }
+
+    .plan-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 3rem 2.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .plan-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .plan-card.popular {
+      border: 2.5px solid var(--primary);
+      box-shadow: var(--shadow-premium);
+      transform: translateY(-8px);
+    }
+
+    .plan-card.popular:hover {
+      transform: translateY(-10px);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: var(--text-white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .plan-name {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .popular .plan-name {
+      color: var(--primary);
+    }
+
+    .plan-price {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .plan-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      min-height: 2.5rem;
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-bottom: 2.5rem;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+    }
+
+    .plan-features li svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .plan-cta {
+      width: 100%;
+    }
+
+    .plans-note {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Linha do Tempo (Onboarding) */
+    .timeline-container {
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 2rem;
+      left: 5%;
+      width: 90%;
+      height: 2px;
+      background-color: var(--border-light);
+      z-index: 1;
+    }
+
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-step {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timeline-dot {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      background-color: var(--bg-primary);
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
       justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-step:hover .timeline-dot {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .timeline-step h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-step p {
+      font-size: 0.925rem;
+      color: var(--text-secondary);
+      max-width: 240px;
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-focus);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-title);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 1.5rem;
     }
 
-    /* Prose / Document View */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: var(--bg-secondary);
+    }
+
+    .faq-answer-inner {
+      padding: 1.5rem 2rem;
+      font-size: 0.975rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      color: var(--primary);
+    }
+
+    .faq-item.active {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Formulario Final */
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow-premium);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      transition: var(--transition);
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      background-color: var(--bg-primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* Interactive Form Success Feedback Modal */
+    .form-success-box {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      animation: zoomIn 0.4s ease forwards;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .success-icon-wrapper {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      background-color: #d1fae5;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+
+    .success-icon-wrapper svg {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    .form-success-box h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .form-success-box p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 400px;
+    }
+
+    /* Legal Pages / Prose views */
     .prose-section {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
+      padding-top: 10rem;
+      padding-bottom: 7rem;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -699,34 +1179,35 @@
     .prose-title {
       font-size: 3rem;
       font-weight: 800;
-      margin-bottom: 1rem;
-      color: white;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
     }
 
     .prose-meta {
-      color: #6b7280;
+      color: var(--text-muted);
       font-size: 0.875rem;
       margin-bottom: 3rem;
+      display: block;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1rem;
     }
 
     .prose-content {
+      color: var(--text-secondary);
       line-height: 1.8;
-      color: #d1d5db;
+      font-size: 1rem;
     }
 
     .prose-content h2 {
-      font-size: 1.75rem;
+      font-size: 1.65rem;
       font-weight: 700;
-      color: white;
-      margin-top: 3rem;
+      color: var(--text-primary);
+      margin-top: 2.5rem;
       margin-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 0.5rem;
     }
 
     .prose-content p {
-      margin-bottom: 1.5rem;
-      font-weight: 300;
+      margin-bottom: 1.25rem;
     }
 
     .prose-content ul, .prose-content ol {
@@ -737,24 +1218,31 @@
       gap: 0.5rem;
     }
 
-    .prose-content li {
-      font-weight: 300;
+    .prose-contact-box {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 3rem;
     }
 
-    .prose-contact-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-top: 2rem;
+    .prose-contact-box h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .prose-contact-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
     }
 
     /* Footer */
     footer {
-      background: #02040a;
+      background: var(--bg-dark);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 6rem 0 3rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 5rem 0 3rem 0;
-      color: #9ca3af;
     }
 
     .footer-grid {
@@ -774,33 +1262,31 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-title);
       font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
+      font-weight: 800;
+      color: var(--text-white);
     }
 
     .footer-logo {
       width: 2.5rem;
       height: 2.5rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+      border-radius: 6px;
     }
 
     .footer-desc {
-      font-size: 0.95rem;
+      font-size: 0.925rem;
       line-height: 1.6;
-      font-weight: 300;
       max-width: 320px;
     }
 
     .footer-col h4 {
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
+      color: var(--text-white);
+      font-size: 0.95rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
     }
 
     .footer-col ul {
@@ -811,37 +1297,58 @@
     }
 
     .footer-col a {
-      color: #9ca3af;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-      font-weight: 300;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.925rem;
     }
 
     .footer-col a:hover {
-      color: #06b6d4;
+      color: var(--text-white);
+      padding-left: 4px;
     }
 
     .footer-contact-item {
       font-size: 0.9rem;
       line-height: 1.6;
-      font-weight: 300;
       display: flex;
       align-items: flex-start;
-      gap: 0.5rem;
+      gap: 0.75rem;
+    }
+
+    .footer-contact-item svg {
+      flex-shrink: 0;
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.2rem;
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-bottom-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.875rem;
-      color: #6b7280;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    /* Routing utility */
+    .footer-legal-text {
+      line-height: 1.6;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 1rem;
+    }
+
+    /* Single Page App Utilities */
     .hidden {
       display: none !important;
     }
@@ -856,27 +1363,69 @@
     }
 
     /* Mobile Responsive styling */
+    @media (max-width: 1024px) {
+      .hero-grid-layout {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+      .hero-content-left {
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+      .hero-subtitle {
+        text-align: center;
+      }
+      .hero-ctas {
+        justify-content: center;
+      }
+      .hero-console {
+        margin: 0 auto;
+      }
+      .pains-grid, .solutions-grid, .segments-grid, .cases-grid, .plans-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .timeline-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+      .timeline-line {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
       .nav-links {
         display: none;
         position: absolute;
         top: 4.5rem;
         left: 0;
         width: 100%;
-        background: #030712;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 2rem;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-light);
+        padding: 2.5rem;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.75rem;
         text-align: center;
+        box-shadow: var(--shadow-lg);
       }
 
       .nav-links.active {
         display: flex;
       }
 
-      .nav-cta-btn {
-        display: none;
+      .header-cta {
+        display: none; /* Hide top right button in mobile */
       }
 
       .menu-toggle {
@@ -893,34 +1442,62 @@
 
       .hero-ctas {
         flex-direction: column;
-        gap: 1rem;
+        align-items: stretch;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .philosophy-grid {
+      .pains-grid, .solutions-grid, .segments-grid, .cases-grid, .plans-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
+      }
+
+      .plan-card.popular {
+        transform: none;
+      }
+
+      .plan-card.popular:hover {
+        transform: translateY(-5px);
+      }
+
+      .stats-bar {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+      }
+
+      .stat-item {
+        width: 100%;
+      }
+
+      .stat-item:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: 1.5rem;
+      }
+
+      .timeline-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .timeline-dot {
+        margin-bottom: 1rem;
+      }
+
+      .form-container {
+        padding: 2rem 1.5rem;
       }
 
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
     }
   </style>
 </head>
 
 <body>
-  <div class="glow-container">
-    <div class="glow-blob glow-blob-1"></div>
-    <div class="glow-blob glow-blob-2"></div>
-    <div class="glow-blob glow-blob-3"></div>
-  </div>
 
   <!-- Header Navigation -->
   <header id="site-header">
@@ -932,14 +1509,18 @@
       
       <ul class="nav-links" id="nav-menu">
         <li><a href="/" onclick="handleLinkClick(event, '/')" class="nav-item-home">Início</a></li>
-        <li><a href="#solucoes" onclick="scrollToSection(event, 'solucoes')">Soluções</a></li>
         <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
-        <li><a href="/etica" onclick="handleLinkClick(event, '/etica')" class="nav-item-etica">Código de Ética</a></li>
+        <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
+        <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
+        <li><a href="#faq" onclick="scrollToSection(event, 'faq')">FAQ</a></li>
+        <li><a href="#contato" onclick="scrollToSection(event, 'contato')">Contato</a></li>
       </ul>
 
-      <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">
-        Falar com a Equipe
-      </a>
+      <div class="header-cta">
+        <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary" style="padding: 0.55rem 1.25rem; font-size: 0.875rem;">
+          Diagnóstico Grátis
+        </a>
+      </div>
 
       <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -957,257 +1538,587 @@
     <!-- VIEW: HOME -->
     <div id="view-home" class="view-content">
       
-      <!-- Hero Section -->
-      <section class="hero container">
-        <div class="hero-badge">
-          <div class="badge-dot"></div>
-          Novidade: Agente de Vendas 24/7
-        </div>
-        
-        <h1>Superapp de Educação e<br/><span class="gradient-text">Agentes de IA</span> para Empresas</h1>
-        
-        <p class="hero-subtitle">
-          Automatize o que é repetitivo e foque no que importa. Desenvolvemos produtos, assistentes inteligentes e automações no WhatsApp que ajudam pessoas e pequenos negócios a crescer de verdade.
-        </p>
-        
-        <div class="hero-ctas">
-          <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Agendar Demo
-          </a>
-          <a href="#solucoes" onclick="scrollToSection(event, 'solucoes')" class="btn btn-secondary">
-            Ver Soluções
-          </a>
-        </div>
-        
-        <div class="hero-showcase">
-          <div class="hero-showcase-bg-glow"></div>
-          <div class="logo-showcase-card">
-            <img src="/logo.jpg" alt="Neurautomation Icon" class="logo-showcase-img" />
-            <div class="logo-showcase-title">neurautomation</div>
-            <div class="logo-showcase-subtitle">N8N | IA PROGRAMAÇÃO</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Social Proof / Integrations Section -->
-      <section class="social-proof">
-        <div class="container">
-          <p>Empresas e tecnologias integradas</p>
-          <div class="marquee">
-            <div class="partner-logo">
-              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v7.029C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>
-              Meta-Safe
+      <!-- HERO SECTION -->
+      <section class="hero container" id="home">
+        <div class="hero-grid-layout">
+          <!-- Left Text content -->
+          <div class="hero-content-left">
+            <div class="badge">
+              <div class="badge-dot"></div>
+              Marketing Médico com Inteligência Artificial
             </div>
-            <div class="partner-logo">
-              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              Integridade de Código
-            </div>
-            <div class="partner-logo">
-              <svg class="partner-icon" viewBox="0 0 24 24"><path d="M19.05 4.91A11.905 11.905 0 0 0 10.5 1.5C3.89 1.5.5 6.89.5 13.5c0 2.11.54 4.17 1.57 6.01L.5 23.5l4.13-1.08c1.78.97 3.79 1.48 5.82 1.48 6.61 0 12-5.39 12-12 0-3.2-1.25-6.21-3.4-8.39zM10.5 21.9c-1.8 0-3.56-.48-5.11-1.39l-.37-.22-2.45.64.65-2.39-.24-.38A9.92 9.92 0 0 1 1.5 13.5C1.5 7.99 5.99 3.5 11.5 3.5c2.67 0 5.18 1.04 7.07 2.93 1.89 1.89 2.93 4.4 2.93 7.07 0 5.51-4.49 10-10 10zm5.49-7.51c-.3-.15-1.78-.88-2.07-.99-.3-.11-.51-.16-.72.15-.22.3-.83 1.05-1.02 1.26-.18.22-.37.24-.67.09-1.36-.68-2.38-1.2-3.32-2.82-.25-.43.25-.4.72-1.35.08-.16.04-.3-.02-.45-.06-.15-.52-1.25-.72-1.72-.2-.48-.43-.41-.59-.42-.15 0-.33-.01-.51-.01s-.48.07-.73.34c-.26.27-.99.97-.99 2.37s1.02 2.75 1.17 2.95c.15.2 2.01 3.07 4.87 4.31.68.29 1.22.47 1.63.6 0 0 .97.39 1.34.33.41-.06 1.78-.73 2.03-1.43.25-.69.25-1.29.18-1.42-.07-.13-.26-.21-.56-.36z"/></svg>
-              WhatsApp Business API
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Solutions Section -->
-      <section class="section container" id="solucoes">
-        <div class="section-header">
-          <h2>Soluções Digitais & Inteligentes</h2>
-          <p>Tornamos a tecnologia e a inteligência artificial acessíveis para impulsionar a produtividade do seu dia a dia.</p>
-        </div>
-        
-        <div class="grid-container">
-          <!-- Card 1 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-            </div>
-            <h3>Estudar com Facilidade</h3>
-            <p>Acesse conteúdos didáticos estruturados, diretos ao ponto e pensados para acelerar radicalmente o seu processo de aprendizado técnico.</p>
-          </div>
-          
-          <!-- Card 2 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><rect x="3" y="4" width="18" height="15" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="4"></line><line x1="8" y1="2" x2="8" y2="4"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            </div>
-            <h3>Organizar o Trabalho</h3>
-            <p>Tenha acesso a ferramentas e setups digitais integrados para estruturar suas rotinas de trabalho e escalar o seu foco e sua produtividade.</p>
-          </div>
-          
-          <!-- Card 3 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            </div>
-            <h3>Economizar Tempo</h3>
-            <p>Automatize fluxos mecânicos e processos redundantes para liberar o seu tempo e o da sua equipe para focar no que realmente gera receita.</p>
-          </div>
-          
-          <!-- Card 4 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zD6 21a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3v12a3 3 0 0 0 3 3z"/></svg>
-            </div>
-            <h3>Aprender Habilidades</h3>
-            <p>Treinamentos práticos e mentorias focadas em ferramentas modernas e de rápida adoção no mercado de tecnologia, IA e nocode.</p>
-          </div>
-          
-          <!-- Card 5 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3>Melhorar Atendimentos</h3>
-            <p>Assistentes virtuais customizados e integrados para dar suporte, triagem de leads e respostas qualificadas 24 horas por dia, 7 dias por semana.</p>
-          </div>
-          
-          <!-- Card 6 -->
-          <div class="glass-card">
-            <div class="card-icon-container">
-              <svg class="card-icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            </div>
-            <h3>Automatizar Rotinas</h3>
-            <p>Conecte seus sistemas (CRMs, planilhas e e-mails) de maneira automática e deixe a tecnologia estruturar seus bastidores para você crescer.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Products & Formats Section -->
-      <section class="section container">
-        <div class="section-header">
-          <h2>Nossos Formatos e Entregas</h2>
-          <p>Disponibilizamos tecnologia e metodologia em formatos simples para aplicação ágil.</p>
-        </div>
-        
-        <div class="grid-container">
-          <div class="glass-card">
-            <h3>Ebooks e Guias</h3>
-            <p>Manuais compactos e dinâmicos, no formato passo a passo, focados em soluções imediatas para dores reais de produtividade e no-code.</p>
-          </div>
-          <div class="glass-card">
-            <h3>Cursos Rápidos</h3>
-            <p>Aulas práticas estruturadas direto na tela das ferramentas, permitindo que você aprenda a automatizar rotinas no seu próprio tempo de estudo.</p>
-          </div>
-          <div class="glass-card">
-            <h3>Assistentes Virtuais & WhatsApp</h3>
-            <p>Sistemas integrados de inteligência artificial (n8n, OpenAI, etc.) atuando de forma inteligente no canal oficial do seu WhatsApp para otimizar processos comerciais.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Philosophy & AI Functionality Section -->
-      <section class="section container" id="como-funciona">
-        <div class="section-header">
-          <h2>Como Nossas IAs Funcionam</h2>
-          <p>Segurança, ética e conformidade digital em primeiro lugar.</p>
-        </div>
-        
-        <div class="philosophy-grid">
-          <div class="philosophy-info">
-            <h3>Tecnologia Acessível, Humana e Útil</h3>
-            <p>
-              Acreditamos que a tecnologia e a inteligência artificial só agregam valor quando são transparentes e melhoram a rotina de quem as usa. Criamos assistentes para dar suporte e otimizar rotinas burocráticas, sem usar promessas milagrosas.
-            </p>
-            <p>
-              Seguimos as políticas de conformidade da Meta e do WhatsApp Business API, desenvolvendo de acordo com o que as regras de publicidade e autenticidade comercial exigem.
+            
+            <h1>Sua clínica trabalhando para você <span>enquanto você dorme.</span></h1>
+            
+            <p class="hero-subtitle">
+              Atraímos pacientes novos, respondemos mensagens 24 horas e reativamos quem sumiu — tudo automaticamente. Você só aparece na consulta.
             </p>
             
-            <a href="/etica" onclick="handleLinkClick(event, '/etica')" class="btn btn-secondary">
-              Ler Nosso Código de Ética
-            </a>
+            <div class="hero-ctas">
+              <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary">
+                Quero meu diagnóstico gratuito
+              </a>
+              <a href="#resultados" onclick="scrollToSection(event, 'resultados')" class="btn btn-secondary">
+                Ver casos de sucesso
+              </a>
+            </div>
           </div>
           
-          <div class="philosophy-card">
-            <h4 style="font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 1.5rem;">Diretrizes dos nossos Agentes</h4>
-            <ul class="info-list">
-              <li class="check">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                <span><strong>Assistentes auxiliares:</strong> Linguagem clara, acolhedora, explicativa e sempre focada em orientar o cliente.</span>
-              </li>
-              <li class="check">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                <span><strong>Identidade declarada:</strong> As IAs se apresentam abertamente como ferramentas digitais de apoio comercial ou organizacional.</span>
-              </li>
-              <li class="cross">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
-                <span><strong>Sem falsificação humana:</strong> Nossos agentes virtuais nunca fingem ser humanos reais ou alegam possuir cargos formais humanos.</span>
-              </li>
-              <li class="cross">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
-                <span><strong>Sem promessas financeiras:</strong> Nossos sistemas recusam gerar e rejeitam qualquer tática de escassez artificial ou promessas de lucros fáceis.</span>
-              </li>
-            </ul>
+          <!-- Right Futuristic Terminal Screen -->
+          <div class="hero-graphic-right">
+            <div class="hero-console">
+              <div class="console-header">
+                <div class="console-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="console-title">neurautomation-robot-v3.sh</div>
+                <div class="console-status">
+                  <span class="pulse-indicator"></span> RUNNING
+                </div>
+              </div>
+              <div class="console-body" id="console-terminal">
+                <!-- Live logs will type out here via script -->
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!-- Mission & Values Section -->
-      <section class="section container">
-        <div class="section-header">
-          <h2>Nossa Filosofia Corporativa</h2>
-          <p>Compromisso sério com o desenvolvimento ético de produtos.</p>
         </div>
         
-        <div class="philosophy-grid">
-          <div class="glass-card" style="padding: 3rem;">
-            <h3 style="font-size: 1.5rem; color: white; margin-bottom: 1.5rem;">Missão & Visão</h3>
-            <p style="font-size: 1.1rem; line-height: 1.7; color: #d1d5db; font-weight: 300;">
-              Tornar a tecnologia e o conhecimento em IA acessíveis para todos. Construir soluções digitais inteligentes que simplifiquem as operações de milhares de brasileiros no aprendizado, na organização de negócios e na otimização de rotinas.
-            </p>
+        <!-- Channels Trust Bar -->
+        <div class="channels-bar">
+          <span class="channels-title">Integração nativa com os principais canais de aquisição</span>
+          <div class="channels-list">
+            <div class="channel-item">
+              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+              <span>WhatsApp</span>
+            </div>
+            <div class="channel-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <span>Instagram</span>
+            </div>
+            <div class="channel-item">
+              <svg viewBox="0 0 24 24"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-6.887 4.114-4.631 0-8.343-3.814-8.343-8.519S7.61 1.476 12.24 1.476c2.519 0 4.16 1.025 5.097 1.926l3.23-3.228C18.455-1.745 15.617-3 12.24-3c-6.85 0-12.24 5.39-12.24 12.24s5.39 12.24 12.24 12.24c6.702 0 12.24-4.832 12.24-12.24 0-.783-.069-1.464-.172-1.959h-12.07z"/></svg>
+              <span>Google</span>
+            </div>
+            <div class="channel-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.25z"/></svg>
+              <span>Google Ads</span>
+            </div>
+            <div class="channel-item">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Meta Ads</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO A DOR (PROBLEMA) -->
+      <section class="section bg-secondary">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge" style="background-color: #fee2e2; color: #ef4444; border-color: rgba(239, 68, 68, 0.1);">O Gargalo Silencioso</span>
+            <h2>Sua clínica está perdendo paciente agora. E você não sabe.</h2>
+            <p>Três falhas comuns nos bastidores da sua operação que custam dezenas de consultas fechadas todos os meses.</p>
           </div>
           
-          <div class="values-grid">
-            <div class="value-card">
-              <h4>Acessibilidade</h4>
-              <p>Projetar ferramentas simples de operar, desmistificando o código e a tecnologia.</p>
+          <div class="pains-grid">
+            <!-- Bloco 1 -->
+            <div class="pain-card">
+              <div class="pain-icon-wrapper">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h3>Mensagem sem resposta às 22h</h3>
+              <p>A paciente de estética decide marcar o procedimento à noite. Ela manda mensagem no WhatsApp, não recebe retorno e agenda na clínica concorrente. Isso acontece toda noite.</p>
             </div>
-            <div class="value-card">
-              <h4>Simplicidade</h4>
-              <p>Aulas, layouts e integrações focadas em resolver, não em gerar novas dúvidas ou processos.</p>
+            
+            <!-- Bloco 2 -->
+            <div class="pain-card">
+              <div class="pain-icon-wrapper">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <h3>Agenda vazia sem explicação</h3>
+              <p>Segundas e terças-feiras com horários vagos recorrentes. A gestão médica não tem previsibilidade de onde vêm os pacientes nem quais ações tomar para reverter a ociosidade.</p>
             </div>
-            <div class="value-card">
-              <h4>Transparência</h4>
-              <p>Alinhamento real e sem rodeios sobre o escopo, limites e atuação dos nossos produtos.</p>
-            </div>
-            <div class="value-card">
-              <h4>Responsabilidade</h4>
-              <p>Adesão plena às boas práticas de privacidade (LGPD) e regras de canais de terceiros.</p>
+            
+            <!-- Bloco 3 -->
+            <div class="pain-card">
+              <div class="pain-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </div>
+              <h3>Paciente que veio uma vez e sumiu</h3>
+              <p>Seu prontuário guarda centenas de pacientes que realizaram procedimentos há meses. Ninguém da clínica entra em contato, ninguém reativa e a receita recorrente é perdida.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Legal Warning Section -->
-      <section class="warning-section container">
-        <div class="warning-card">
-          <div class="warning-icon-container">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      <!-- SEÇÃO A SOLUÇÃO (COMO FUNCIONA) -->
+      <section class="section" id="como-funciona">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Automação Inteligente</span>
+            <h2>Um sistema completo que roda sozinho — você só atende.</h2>
+            <p>Não é uma ferramenta solta. É uma operação de marketing inteira com IA funcionando em paralelo aos atendimentos da sua clínica.</p>
           </div>
-          <div class="warning-content">
-            <h3>Aviso Importante & Regulatório</h3>
-            <p>
-              A <strong>Neurautomation</strong> desenvolve ferramentas tecnológicas exclusivamente com fins educativos, organizacionais e de apoio à produtividade digital. Nossos produtos e assistentes virtuais de inteligência artificial:
-            </p>
-            <ul>
-              <li><strong>Não garantem resultados financeiros:</strong> Não prometemos retornos, crescimento de vendas garantido ou resultados profissionais pré-determinados.</li>
-              <li><strong>Não substituem profissionais qualificados:</strong> Nossos robôs e assistentes são voltados à triagem e automação de rotinas de atendimento básico. Não oferecemos aconselhamento nas áreas médica, terapêutica, de saúde, jurídica, de engenharia ou financeira.</li>
-              <li><strong>Esforço individual:</strong> Todos os resultados de aprendizado dependem da dedicação, estudo e aplicação prática de cada usuário em seus respectivos negócios.</li>
-            </ul>
+          
+          <div class="solutions-grid">
+            <!-- Card 1 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3>Atendimento automático 24/7</h3>
+              <p>Um assistente de IA treinado que responde dúvidas frequentes, qualifica as pacientes e agenda as consultas sozinho, funcionando inclusive de madrugada e fins de semana.</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </div>
+              <h3>30 posts no piloto automático</h3>
+              <p>Conteúdo relevante criado por IA respeitando estritamente a ética médica do CFM. Publicações geradas e agendadas para o mês inteiro. Você só aprova em 10 min por semana.</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <h3>Sua clínica no topo do Google</h3>
+              <p>Campanhas no Google Ads programadas estrategicamente para impactar quem busca por procedimentos na sua região exata. IA otimiza o investimento em tempo real.</p>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              </div>
+              <h3>Reativação de pacientes sumidos</h3>
+              <p>A tecnologia mapeia pacientes antigos sem agendamento ativo e dispara lembretes personalizados de manutenção. Resgate pacientes de forma ética e natural.</p>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <h3>Avaliações no Google automatizadas</h3>
+              <p>Pós-consulta automatizado que solicita avaliação. Pacientes satisfeitas são direcionadas ao Perfil da Clínica no Google; feedbacks negativos chegam direto ao gestor antes de virar queixa pública.</p>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="solution-card">
+              <div class="solution-icon-wrapper">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <h3>Relatório mensal em números reais</h3>
+              <p>Sem achismo de vaidade ou métricas irrelevantes. Veja exatamente quantas consultas foram agendadas, o custo por paciente (CAC) e o retorno líquido sobre o investimento.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Final Call to Action -->
-      <section class="container" style="margin-top: 4rem;">
-        <div class="cta-banner">
-          <h2>Pronto para Otimizar Seus Processos?</h2>
-          <p>Implemente tecnologia simples, humana e desenvolvida sob medida para a produtividade da sua empresa no dia a dia.</p>
-          <div class="cta-banner-buttons">
-            <a href="https://wa.me/5511934281525" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              Falar com a Equipe no WhatsApp
-            </a>
+      <!-- SEÇÃO ESCALABILIDADE (SEGMENTOS ATENDIDOS) -->
+      <section class="section bg-secondary">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Nicho & Escalabilidade</span>
+            <h2>Segmentos que atendemos</h2>
+            <p>Atualmente focados em estética médica, nosso sistema de IA está sendo adaptado para novos nichos em breve.</p>
+          </div>
+
+          <div class="segments-grid">
+            <!-- Active Segment -->
+            <div class="segment-card active">
+              <span class="segment-status">Operando</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <h3>Estética & Dermatologia</h3>
+              </div>
+              <p>Foco completo com modelos prontos de copy CFM, bots estruturados de WhatsApp e automações de aquisição focadas em rejuvenescimento, injetáveis e tratamentos premium.</p>
+            </div>
+
+            <!-- Future Segments -->
+            <div class="segment-card pending">
+              <span class="segment-status">Lista de Espera</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"/></svg>
+                <h3>Odontologia</h3>
+              </div>
+              <p>Expansão programada com fluxo otimizado para implantes, alinhadores transparentes e estética dental.</p>
+            </div>
+
+            <div class="segment-card pending">
+              <span class="segment-status">Lista de Espera</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                <h3>Ginecologia & Obstetrícia</h3>
+              </div>
+              <p>Rotinas automatizadas de acompanhamento preventivo, pré-natal e retorno anual de pacientes.</p>
+            </div>
+
+            <div class="segment-card pending">
+              <span class="segment-status">Lista de Espera</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <h3>Psiquiatria & Saúde Mental</h3>
+              </div>
+              <p>Triagem com acolhimento e agendamentos periódicos recorrentes com foco total em privacidade.</p>
+            </div>
+
+            <div class="segment-card pending">
+              <span class="segment-status">Lista de Espera</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <h3>Escritórios Jurídicos</h3>
+              </div>
+              <p>Automação e qualificação de leads de causas cíveis, trabalhistas ou corporativas.</p>
+            </div>
+
+            <div class="segment-card pending">
+              <span class="segment-status">Lista de Espera</span>
+              <div class="segment-icon-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <h3>Imobiliárias & Corretores</h3>
+              </div>
+              <p>Integração de leads de portais, agendamento de visitas de imóveis e qualificação de crédito via chat.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO PROVA SOCIAL (RESULTADOS) -->
+      <section class="section" id="resultados">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Casos de Sucesso</span>
+            <h2>Resultados que aparecem na agenda, não em seguidores</h2>
+            <p>Deixamos curtidas de lado e focamos estritamente no crescimento financeiro e na otimização de tempo médico.</p>
+          </div>
+
+          <div class="cases-grid">
+            <!-- Case 1 -->
+            <div class="case-card">
+              <div class="case-header">
+                <span class="case-badge">Dermatologia Estética — São Paulo</span>
+                <h3>Dr. Ricardo M.</h3>
+              </div>
+              <div class="case-body">
+                <div class="case-result">+34 consultas novas no primeiro mês</div>
+                <p class="case-detail"><strong>Antes:</strong> Dependia 100% de indicação boca-a-boca e posts ocasionais sem estratégia.<br/><strong>Depois:</strong> Canal previsível de captação trazendo novas pacientes de estética todos os dias.</p>
+              </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="case-card">
+              <div class="case-header">
+                <span class="case-badge">Harmonização Facial — Campinas</span>
+                <h3>Dra. Beatriz S.</h3>
+              </div>
+              <div class="case-body">
+                <div class="case-result">No-show caiu de 28% para 6%</div>
+                <p class="case-detail"><strong>Antes:</strong> Desperdiçava horários nobres de agenda com faltas não avisadas.<br/><strong>Depois:</strong> Bot de confirmação e lembretes inteligentes mitigaram cancelamentos de última hora.</p>
+              </div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="case-card">
+              <div class="case-header">
+                <span class="case-badge">Medicina Estética — Rio de Janeiro</span>
+                <h3>Dra. Clara P.</h3>
+              </div>
+              <div class="case-body">
+                <div class="case-result">R$22.000 reativados em 45 dias</div>
+                <p class="case-detail"><strong>Antes:</strong> Base de dados com mais de 300 pacientes antigas totalmente esquecidas.<br/><strong>Depois:</strong> Disparador inteligente enviou abordagens personalizadas e reengajou clientes antigos.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Impact Numbers Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <div class="stat-number">120.000+</div>
+              <div class="stat-label">Clínicas Privadas no Brasil</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">R$0 a R$2k</div>
+              <div class="stat-label">Média gasta sem IA ou previsibilidade</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">24 Horas</div>
+              <div class="stat-label">Atendimento comercial sem pausas</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO PLANOS E PREÇOS -->
+      <section class="section bg-secondary" id="planos">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Nossos Planos</span>
+            <h2>Escolha o que faz sentido para a sua clínica agora</h2>
+            <p>Você começa pelo que resolve a maior dor de hoje e expande conforme sua clínica cresce.</p>
+          </div>
+
+          <div class="plans-grid">
+            <!-- Plano Starter -->
+            <div class="plan-card">
+              <div class="plan-name">Plano Starter</div>
+              <div class="plan-price">R$ 2.500<span>/mês</span></div>
+              <p class="plan-desc">Para clínicas em estágio inicial que precisam estruturar canais básicos de atração.</p>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conteúdo para Instagram (30 posts/mês)</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Google Meu Negócio estruturado</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Relatório mensal de resultados</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Suporte por WhatsApp comercial</li>
+              </ul>
+              <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-secondary plan-cta">Escolher Starter</a>
+            </div>
+
+            <!-- Plano Crescimento (MAIS POPULAR) -->
+            <div class="plan-card popular">
+              <div class="popular-tag">Mais Escolhido</div>
+              <div class="plan-name">Plano Crescimento</div>
+              <div class="plan-price">R$ 4.500<span>/mês</span></div>
+              <p class="plan-desc">Para clínicas em expansão que querem automatizar processos de vendas e captação.</p>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <strong>Tudo do Starter</strong></li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Atendimento WhatsApp automático 24/7</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Agendamento automático de consultas</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Google Ads & Meta Ads geridos por IA</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Reativação automática de pacientes</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Lembretes automáticos anti-faltas</li>
+              </ul>
+              <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary plan-cta">Escolher Crescimento</a>
+            </div>
+
+            <!-- Plano Sistema Completo -->
+            <div class="plan-card">
+              <div class="plan-name">Sistema Completo</div>
+              <div class="plan-price">R$ 8.000<span>/mês</span></div>
+              <p class="plan-desc">Para clínicas premium que demandam suporte total e estratégias avançadas de branding.</p>
+              <ul class="plan-features">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <strong>Tudo do Crescimento</strong></li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Roteiros e edição de Reels do médico</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Programa de indicação automatizado</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Painel de métricas em tempo real</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Reunião quinzenal de alinhamento</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Integração com prontuário da clínica</li>
+              </ul>
+              <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-secondary plan-cta">Escolher Sistema Completo</a>
+            </div>
+          </div>
+
+          <p class="plans-note">
+            ✓ Sem contrato de fidelidade. Você permanece porque vê resultados — não porque assinou um papel.
+          </p>
+        </div>
+      </section>
+
+      <!-- SEÇÃO COMO FUNCIONA NA PRÁTICA (TIMELINE) -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Implantação Rápida</span>
+            <h2>Da conversa ao sistema rodando em 7 dias</h2>
+            <p>Seus novos canais automatizados operando sem complicação e sem demandar seu tempo de trabalho.</p>
+          </div>
+
+          <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-steps">
+              <!-- Etapa 1 -->
+              <div class="timeline-step">
+                <div class="timeline-dot">01</div>
+                <h3>Diagnóstico gratuito</h3>
+                <p>Conversa rápida de 20 min para entender os gargalos da clínica e as especialidades prioritárias.</p>
+              </div>
+
+              <!-- Etapa 2 -->
+              <div class="timeline-step">
+                <div class="timeline-dot">02</div>
+                <h3>Proposta sob medida</h3>
+                <p>Você recebe um plano específico com os canais e copies focados na sua região, sem pacotes genéricos.</p>
+              </div>
+
+              <!-- Etapa 3 -->
+              <div class="timeline-step">
+                <div class="timeline-dot">03</div>
+                <h3>Configuração do Setup</h3>
+                <p>Nossa equipe desenvolve o bot de WhatsApp, os posts do mês e integra as campanhas de tráfego. Você aprova tudo.</p>
+              </div>
+
+              <!-- Etapa 4 -->
+              <div class="timeline-step">
+                <div class="timeline-dot">04</div>
+                <h3>Operação no Ar</h3>
+                <p>A inteligência artificial começa a qualificar e resgatar pacientes. O impacto se reflete direto na agenda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO FAQ (OBJECÕES) -->
+      <section class="section bg-secondary" id="faq">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Perguntas Frequentes</span>
+            <h2>Perguntas que a gente recebe sempre</h2>
+            <p>Esclarecemos os principais questionamentos sobre a nossa entrega técnica de marketing médico.</p>
+          </div>
+
+          <div class="faq-list">
+            <!-- Item 1 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Preciso saber de tecnologia para usar?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Não. Você e sua secretária não precisam configurar nem gerenciar nenhuma ferramenta complexa. Entregamos todo o setup operando em segundo plano. Sua única tarefa será realizar as consultas geradas pelo sistema.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Isso respeita as regras do CFM?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Sim. Nossa equipe conhece profundamente a resolução do Conselho Federal de Medicina (CFM) sobre publicidade médica. Não fazemos promessas de cura, "antes e depois" sem autorização ética, exposição de valores de consultas ou qualquer apelo comercial ilegal. Tudo é revisado antes de ir ao ar.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>E se eu já tiver uma agência de marketing?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  A maior parte das clínicas parceiras já teve ou tem agências comerciais tradicionais que criam posts bonitos nas redes sociais, mas não trazem pacientes reais. Nosso foco é automação comercial de ponta: qualificamos o lead via WhatsApp imediato e ativamos bases de pacientes sumidos — ações operacionais robustas que agências tradicionais não conseguem executar.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Em quanto tempo vejo resultado?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  O bot de recepção e conversão começa a funcionar nas primeiras 24 horas após a ativação do WhatsApp. Nossos fluxos de tráfego e captação mostram resultados sólidos e agendamentos diretos na agenda da clínica a partir da segunda semana de funcionamento.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Os planos têm fidelidade contratual?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Não. Operamos no modelo de mensalidade simples. Acreditamos que a qualidade do resultado do sistema é o único laço necessário para a parceria. Se por qualquer motivo quiser encerrar a automação, basta solicitar o cancelamento antes do ciclo de faturamento seguinte.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Funciona para qualquer especialidade?</span>
+                <svg class="faq-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Nossos robôs e criativos estão calibrados prioritariamente para estética médica, dermatologia e cirurgia plástica. Já estamos abrindo vagas exclusivas para odontologia e medicina integrativa. Se atua em outro segmento, preencha o diagnóstico para entrar na lista prioritária de adequação de modelos.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO FORMULÁRIO FINAL -->
+      <section class="section" id="contato">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Diagnóstico Grátis</span>
+            <h2>Sua clínica pode crescer sem você virar marqueteiro</h2>
+            <p>Inicie sua jornada com uma análise gratuita de 20 minutos de forma digital e sem compromisso.</p>
+          </div>
+
+          <div class="form-container">
+            <!-- Form Card -->
+            <form id="diagnostico-form" onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label for="form-nome">Nome Completo</label>
+                <input type="text" id="form-nome" class="form-input" placeholder="Dr. / Dra. Nome Sobrenome" required />
+              </div>
+
+              <div class="form-group">
+                <label for="form-clinica">Nome da Clínica / Consultório</label>
+                <input type="text" id="form-clinica" class="form-input" placeholder="Ex: Clínica Sorriso & Pele" required />
+              </div>
+
+              <div class="form-group">
+                <label for="form-especialidade">Especialidade / Foco Principal</label>
+                <select id="form-especialidade" class="form-select" required>
+                  <option value="" disabled selected>Selecione a especialidade...</option>
+                  <option value="Dermatologia">Dermatologia</option>
+                  <option value="Estética / Harmonização">Estética / Harmonização Facial</option>
+                  <option value="Cirurgia Plástica">Cirurgia Plástica</option>
+                  <option value="Odontologia">Odontologia</option>
+                  <option value="Medicina Geral / Outro">Medicina Geral ou Outro segmento</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="form-whatsapp">WhatsApp Profissional</label>
+                <input type="tel" id="form-whatsapp" class="form-input" placeholder="(00) 00000-0000" required />
+              </div>
+
+              <div class="form-group">
+                <label for="form-cidade">Cidade / Estado</label>
+                <input type="text" id="form-cidade" class="form-input" placeholder="Ex: São Paulo / SP" required />
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit-btn" id="submit-btn-inner">
+                Quero meu diagnóstico gratuito
+              </button>
+            </form>
+
+            <!-- Success Box -->
+            <div class="form-success-box" id="form-success">
+              <div class="success-icon-wrapper">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              </div>
+              <h3>Diagnóstico Solicitado!</h3>
+              <p>Os dados da sua clínica foram processados. Para acelerar seu diagnóstico e falar com um especialista em até 2 horas comerciais, clique no botão abaixo para nos chamar no WhatsApp.</p>
+              <a href="#" id="whatsapp-success-btn" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3); font-weight: 700;">
+                <svg style="width:1.25rem; height:1.25rem; fill:currentColor; margin-right: 0.25rem;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+                Iniciar conversa no WhatsApp
+              </a>
+            </div>
+
+            <div class="form-note">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Retorno em até 2 horas úteis pelo WhatsApp.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1218,54 +2129,37 @@
     <div id="view-termos" class="view-content container hidden">
       <section class="prose-section">
         <h1 class="prose-title">Termos de Uso</h1>
-        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        <span class="prose-meta">Última atualização: 30 de Maio de 2026</span>
         
         <div class="prose-content">
           <h2>1. Aceitação dos Termos</h2>
           <p>
-            Ao acessar, navegar ou utilizar o site da <strong>NEURAUTOMATION LTDA</strong> ("Neurautomation"), você reconhece que leu, compreendeu e concorda em estar vinculado a estes Termos de Uso, bem como a todas as leis e regulamentos aplicáveis. Se você não concorda com qualquer um dos termos estipulados nesta página, solicitamos que não continue a navegar pelo nosso site ou a usufruir das nossas ferramentas e serviços.
+            Ao navegar pelo site oficial da <strong>NEURAUTOMATION LTDA</strong>, você concorda e se vincula a estes Termos de Uso. Caso discorde de quaisquer termos descritos neste documento, solicitamos que suspenda imediatamente o uso e navegação do nosso site.
           </p>
           
-          <h2>2. Serviços Oferecidos</h2>
+          <h2>2. Escopo dos Serviços</h2>
           <p>
-            A Neurautomation fornece soluções de automação comercial, assistentes virtuais baseados em inteligência artificial e produtos informacionais ou educacionais (como e-books, manuais e guias práticos). Nossos produtos são desenhados para otimizar fluxos operacionais internos, triagem de atendimentos e apoiar o aprendizado em tecnologia digital. Nossos serviços são ferramentas de apoio e dependem da infraestrutura de terceiros (como a API do WhatsApp/Meta, servidores de hospedagem e conectividade externa).
+            A Neurautomation fornece soluções em tecnologia, roteiros de publicidade com IA, desenvolvimento de atendentes e bots automatizados e treinamentos práticos de processos. Nossa entrega visa apoiar o ganho de produtividade burocrática, otimização de agendamentos e automação comercial direta das clínicas médicas contratantes.
           </p>
           
-          <h2>3. Uso Permitido & Conduta</h2>
+          <h2>3. Responsabilidades Regulatórias Médicas</h2>
           <p>
-            Ao utilizar o site ou produtos da Neurautomation, você concorda em agir em plena conformidade legal. É estritamente proibido:
-          </p>
-          <ul>
-            <li>Utilizar nossos assistentes virtuais ou integrações para enviar mensagens em massa indesejadas (spam) ou violar os termos de serviço e diretrizes de plataforma do WhatsApp/Meta.</li>
-            <li>Praticar qualquer conduta fraudulenta, que cause dano a servidores ou tente obter acessos não autorizados.</li>
-            <li>Usar nossos materiais intelectuais para criar serviços concorrentes diretos baseados em cópia literal de nossos e-books ou códigos proprietários.</li>
-          </ul>
-          
-          <h2>4. Propriedade Intelectual</h2>
-          <p>
-            Todo o conteúdo disponibilizado em nosso portal e em nossos infoprodutos (incluindo o logotipo da Neurautomation, layouts visuais, textos explicativos, designs gráficos e estruturas de código de fluxo de automação) constitui propriedade exclusiva da Neurautomation ou de seus respectivos licenciadores. Estes materiais estão sob a tutela da legislação brasileira de direitos autorais e propriedade intelectual, sendo proibida a reprodução ou exploração comercial não autorizada por escrito.
+            Nossas soluções de inteligência artificial são programadas sob instrução prévia da clínica. A clínica contratante e seu respectivo responsável técnico médico mantêm responsabilidade irrestrita sobre a conformidade de todas as publicações e scripts comerciais de acordo com as regras de publicidade de conselhos reguladores (como o Conselho Federal de Medicina - CFM e o Conselho Federal de Odontologia - CFO).
           </p>
           
-          <h2>5. Limitação de Responsabilidade</h2>
+          <h2>4. Limitação de Responsabilidade Operacional</h2>
           <p>
-            A Neurautomation atua com empenho para entregar soluções estáveis e seguras. No entanto, por utilizarmos APIs e serviços de terceiros (como OpenAI, Meta, WhatsApp, n8n cloud, e provedores de hospedagem), não nos responsabilizamos por perdas de conexão temporárias, instabilidades operacionais em plataformas externas ou decisões comerciais e financeiras tomadas com base em dados coletados por nossas ferramentas. Nossas IAs não substituem análises humanas especializadas.
+            Uma vez que os nossos sistemas dependem da estabilidade de APIs e plataformas externas (como WhatsApp Business API, Meta Cloud Services, servidores Google e Open AI), a Neurautomation não pode ser responsabilizada por eventuais perdas operacionais causadas por oscilações, suspensões ou falhas técnicas decorrentes das referidas plataformas de terceiros.
           </p>
           
-          <h2>6. Alterações nos Termos</h2>
+          <h2>5. Propriedade Intelectual</h2>
           <p>
-            Reservamo-nos o direito de ajustar, expandir ou revisar estes Termos de Uso a qualquer momento. Quaisquer modificações efetuadas surtem efeitos jurídicos imediatos assim que publicadas em nosso site oficial. O fato de continuar a utilizar nosso site ou ferramentas após a publicação de novos termos configura consentimento e concordância expressa com as modificações aplicadas.
+            Todo o design estrutural do site, textos promocionais, elementos visuais e códigos do assistente virtual são propriedade intelectual exclusiva da Neurautomation, resguardados pelas leis de direitos autorais no Brasil.
           </p>
           
           <div class="prose-contact-box">
-            <h3 style="font-weight: 700; color: white; margin-bottom: 0.5rem;">Dúvidas e Contato</h3>
-            <p style="font-size: 0.9rem; color: #9ca3af; margin-bottom: 0.5rem;">
-              Para esclarecimentos sobre estes Termos de Uso, entre em contato através de nossa assessoria comercial e jurídica:
-            </p>
-            <p style="font-size: 0.9rem; color: #d1d5db;">
-              <strong>E-mail:</strong> contato@neurautomation.com<br/>
-              <strong>Telefone/WhatsApp:</strong> 11 93428-1525<br/>
-              <strong>Endereço comercial:</strong> Av. Cásper Líbero, 538, Sala 42 B, Centro, São Paulo - SP, CEP 01033-000
-            </p>
+            <h3>Dúvidas sobre os Termos?</h3>
+            <p>Escreva para nosso time comercial e jurídico em: <strong>contato@neurautomation.com</strong></p>
           </div>
         </div>
       </section>
@@ -1275,63 +2169,32 @@
     <div id="view-privacidade" class="view-content container hidden">
       <section class="prose-section">
         <h1 class="prose-title">Política de Privacidade</h1>
-        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        <span class="prose-meta">Última atualização: 30 de Maio de 2026</span>
         
         <div class="prose-content">
-          <h2>1. Introdução</h2>
+          <h2>1. Introdução e LGPD</h2>
           <p>
-            A <strong>NEURAUTOMATION LTDA</strong> tem como pilar institucional o respeito pela privacidade e a proteção de dados de seus clientes, usuários e parceiros comerciais. Esta Política de Privacidade serve para detalhar, de forma clara e objetiva, como as informações que você compartilha em nosso site ou nas nossas integrações de atendimento são coletadas, armazenadas, tratadas e resguardadas, em estrito cumprimento às diretrizes da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+            A <strong>NEURAUTOMATION LTDA</strong> tem como compromisso zelar pela privacidade e segurança dos dados pessoais fornecidos por nossos clientes e potenciais leads, atuando em perfeita sintonia com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
           </p>
           
-          <h2>2. Coleta de Dados</h2>
+          <h2>2. Coleta e Finalidade dos Dados</h2>
           <p>
-            Nós podemos coletar informações fornecidas voluntariamente por você ao interagir com nosso site, como ao clicar em botões de contato ou se cadastrar para demonstrações. As informações coletadas incluem:
-          </p>
-          <ul>
-            <li><strong>Dados cadastrais básicos:</strong> Nome completo, endereço de e-mail e número de telefone celular (WhatsApp) informados ao iniciar conversas ou manifestar interesse comercial.</li>
-            <li><strong>Histórico de conversações comerciais:</strong> Mensagens enviadas aos nossos assistentes virtuais de teste no WhatsApp, com o objetivo único de calibrar o atendimento comercial e prestar o suporte técnico solicitado.</li>
-            <li><strong>Metadados de navegação:</strong> Endereço IP aproximado, dados de cookies do navegador e páginas visitadas para fins de otimização técnica e tráfego.</li>
-          </ul>
-          
-          <h2>3. Finalidade e Uso das Informações</h2>
-          <p>
-            Todo processamento de dados realizado pela Neurautomation baseia-se em finalidades legítimas. Tratamos seus dados para:
-          </p>
-          <ul>
-            <li>Fornecer e aprimorar a funcionalidade de nossas ferramentas e assistentes inteligentes de triagem comercial.</li>
-            <li>Prestar suporte técnico, responder a dúvidas operacionais e agendar demonstrações de fluxos no-code.</li>
-            <li>Enviar novidades sobre novos materiais educacionais e recursos de automação de WhatsApp, desde que expressamente consentido pelo usuário.</li>
-            <li>Cumprir obrigações regulatórias, legais e de auditoria de segurança da informação.</li>
-          </ul>
-          
-          <h2>4. Compartilhamento de Dados</h2>
-          <p>
-            A Neurautomation compromete-se a não vender, alugar ou transferir suas informações pessoais a terceiros com intuitos de publicidade ou marketing sem o seu consentimento explícito. O compartilhamento ocorre apenas quando indispensável à operação do serviço (como com provedores de nuvem, plataformas seguras de bancos de dados ou APIs oficiais como a da OpenAI e da Meta), todos protegidos por rigorosos contratos de confidencialidade e segurança digital.
+            Coletamos as informações inseridas voluntariamente por você ao solicitar nosso diagnóstico gratuito (Nome, Clínica, Especialidade, WhatsApp Comercial e Cidade). Estes dados são tratados exclusivamente com a finalidade de qualificar seu contato, estruturar uma proposta comercial aderente ao seu segmento de atuação e iniciar o diagnóstico no canal do WhatsApp.
           </p>
           
-          <h2>5. Segurança da Informação</h2>
+          <h2>3. Retenção e Segurança dos Dados</h2>
           <p>
-            Empregamos medidas técnicas e administrativas compatíveis com os padrões do mercado de tecnologia para proteger seus dados contra incidentes de acesso não autorizado, destruição acidental, alteração ou vazamento. Os dados em trânsito são criptografados (HTTPS/SSL) e o acesso a bancos de dados é restrito a operadores comerciais devidamente autorizados.
+            Seus dados cadastrais básicos ficam retidos em servidores de nuvem seguros pelo período estritamente necessário para prestar o suporte comercial ou enquanto houver relação de prestação de serviços ativa. Garantimos que não vendemos, comercializamos ou compartilhamos seus dados com terceiros com finalidades externas de propaganda.
           </p>
           
-          <h2>6. Seus Direitos (LGPD)</h2>
+          <h2>4. Direitos do Titular</h2>
           <p>
-            Em conformidade com a LGPD, você possui controle integral sobre seus dados pessoais. A qualquer momento, você pode solicitar à Neurautomation:
+            De acordo com os direitos conferidos pela LGPD, você possui livre direito de confirmação de tratamento de dados, acesso, correção de dados incompletos ou inexatos, assim como direito de solicitar a eliminação integral de suas informações da nossa base de contatos.
           </p>
-          <ul>
-            <li>A confirmação da existência de tratamento e o acesso facilitado aos seus dados armazenados em nossos sistemas.</li>
-            <li>A correção de dados incompletos, desatualizados ou incorretos.</li>
-            <li>A revogação do consentimento para envio de comunicados e a exclusão definitiva de seus dados do nosso cadastro de contatos.</li>
-          </ul>
           
           <div class="prose-contact-box">
-            <h3 style="font-weight: 700; color: white; margin-bottom: 0.5rem;">Encarregado de Proteção de Dados (DPO)</h3>
-            <p style="font-size: 0.9rem; color: #9ca3af; margin-bottom: 0.5rem;">
-              Para exercer seus direitos de privacidade ou tirar dúvidas sobre como seus dados são coletados, fale diretamente com o nosso Encarregado pelo tratamento de dados pessoais (DPO):
-            </p>
-            <p style="font-size: 0.9rem; color: #d1d5db;">
-              <strong>E-mail de privacidade:</strong> contato@neurautomation.com
-            </p>
+            <h3>Encarregado pelo Tratamento de Dados (DPO)</h3>
+            <p>Para exercer seus direitos de privacidade, entre em contato em: <strong>contato@neurautomation.com</strong></p>
           </div>
         </div>
       </section>
@@ -1340,42 +2203,38 @@
     <!-- VIEW: CÓDIGO DE ÉTICA -->
     <div id="view-etica" class="view-content container hidden">
       <section class="prose-section">
-        <h1 class="prose-title">Código de Ética e Conduta</h1>
-        <p class="prose-meta">Última atualização: 28 de Maio de 2026</p>
+        <h1 class="prose-title">Código de Ética Comercial</h1>
+        <span class="prose-meta">Última atualização: 30 de Maio de 2026</span>
         
         <div class="prose-content">
-          <p style="font-size: 1.15rem; color: #d1d5db; margin-bottom: 2.5rem; font-weight: 300;">
-            A <strong>NEURAUTOMATION LTDA</strong> pauta todas as suas relações de mercado, desenvolvimento de softwares e relacionamentos institucionais sobre princípios inegociáveis de transparência, responsabilidade ética e respeito irrestrito às normas de publicidade comercial e plataformas de terceiros.
+          <p style="font-size: 1.125rem; margin-bottom: 2rem; font-weight: 500;">
+            Na Neurautomation, acreditamos que a inteligência artificial deve atuar como uma alavanca ética de transparência e profissionalismo nas relações entre clínicas e pacientes.
           </p>
           
-          <h2>1. Princípios Fundamentais</h2>
+          <h2>1. Compromisso com a Ética Médica (CFM)</h2>
           <p>
-            Nossa missão corporativa baseia-se em empoderar indivíduos e pequenas empresas através do uso saudável e prático da tecnologia e da inteligência artificial. Por isso:
+            Toda comunicação gerada pelo nosso sistema para as redes sociais ou canais de atendimento deve cumprir rigorosamente as normativas éticas de publicidade médica. Proibimos explicitamente:
           </p>
           <ul>
-            <li>Rejeitamos veementemente qualquer técnica comercial ou tecnológica de publicidade que induza o usuário ao erro, que manipule dados ou que promova falsas expectativas.</li>
-            <li>Nossos infoprodutos e assistentes virtuais são concebidos com foco no desenvolvimento educativo, prático e na utilidade real da inteligência artificial aplicada ao trabalho diário, afastando-se de discursos de ganhos fáceis ou promessas irreais.</li>
+            <li>Exposição de fotos corporais sem finalidade científica de "antes e depois" de forma comercial agressiva.</li>
+            <li>Promessas explícitas de resultados estéticos ou garantias milagrosas de tratamentos.</li>
+            <li>Divulgação aberta de preços de procedimentos ou pacotes comerciais de desconto em posts públicos.</li>
+            <li>Práticas que mercantilizem de forma desproporcional a profissão de saúde.</li>
           </ul>
-          
-          <h2>2. Nossos Compromissos de Mercado</h2>
+
+          <h2>2. Transparência na Automação</h2>
           <p>
-            Para garantir a transparência comercial em nossas operações e nas soluções desenvolvidas para nossos clientes, assumimos publicamente os seguintes compromissos:
+            Nossos robôs de recepção no WhatsApp são orientados a se identificar abertamente como assistentes virtuais de apoio comercial, evitando qualquer tentativa de ludibriar a paciente fingindo ser uma profissional humana real. A paciente deve sempre saber quando está interagindo com IA.
           </p>
-          <ol>
-            <li><strong>Ausência de promessas de ganhos financeiros:</strong> Jamais criamos ou toleramos promessas de retornos financeiros garantidos, enriquecimento sem esforço ou lucros irreais através das nossas soluções digitais.</li>
-            <li><strong>Não substituição de conselhos profissionais especializados:</strong> Nossos agentes virtuais são programados e instruídos para atuar unicamente na triagem comercial primária ou suporte operacional básico. Eles não realizam aconselhamento técnico qualificado nem substituem a orientação de especialistas regulamentados.</li>
-            <li><strong>Declaração explícita de automação:</strong> Garantimos que os nossos agentes inteligentes instalados em canais de atendimento declarem abertamente sua identidade como inteligências artificiais na mensagem de boas-vindas, evitando simular identidade humana real sem aviso prévio.</li>
-            <li><strong>Recusa a técnicas de pressão indevida:</strong> Não empregamos em nossos roteiros comerciais gatilhos de escassez artificial extrema, constrangimento de consumo ou qualquer pressão coercitiva no processo decisório do cliente.</li>
-          </ol>
-          
-          <h2>3. Conformidade com Plataformas (Meta & WhatsApp Business)</h2>
+
+          <h2>3. Segurança da Informação Médica</h2>
           <p>
-            Desenvolvemos integrações tecnológicas em estrito respeito às políticas comerciais, diretrizes de publicação e termos de uso definidos pela Meta e pelo WhatsApp Business. Nossos agentes comerciais operam estritamente dentro da legalidade das APIs autorizadas, respeitando a privacidade do usuário do WhatsApp e promovendo uma comunicação comercial limpa e consensual.
+            Nossos fluxos e bots respeitam a privacidade no-show e dados sensíveis de prontuários. Nossos sistemas não transmitem dados sensíveis de diagnósticos de pacientes a servidores públicos inseguros ou para fins de marketing sem autorização expressa.
           </p>
-          
-          <h2>4. Revisão Contínua</h2>
+
+          <h2>4. Retornos Reais e Responsabilidade</h2>
           <p>
-            Este Código de Ética e Conduta é revisado semestralmente pela diretoria comercial da Neurautomation para assegurar que as nossas soluções, parcerias e códigos-fonte evoluam em perfeita harmonia com o desenvolvimento do ecossistema global de inteligência artificial e em sintonia com a regulação de dados brasileira.
+            Trabalhamos com previsões realistas. Recusamos o uso de gatilhos mentais coercitivos de medo ou constrangimento e pautamos nossos contratos comerciais sobre o ganho real de qualidade e atendimento.
           </p>
         </div>
       </section>
@@ -1386,68 +2245,78 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-grid">
+      <!-- Brand Column -->
       <div class="footer-brand">
         <a href="/" class="footer-brand-title" onclick="handleLinkClick(event, '/')">
           <img src="/logo.jpg" alt="Neurautomation Footer Logo" class="footer-logo" />
           <span>Neurautomation</span>
         </a>
         <p class="footer-desc">
-          Tecnologia que conecta pessoas, conhecimento e oportunidades. Desenvolvemos soluções digitais inteligentes e éticas para apoiar o seu crescimento comercial.
+          Marketing médico com inteligência artificial para clínicas que querem crescer sem depender apenas de indicações boca-a-boca.
         </p>
       </div>
       
+      <!-- Links Column -->
       <div class="footer-col">
-        <h4>Soluções</h4>
+        <h4>Navegação</h4>
         <ul>
           <li><a href="/" onclick="handleLinkClick(event, '/')">Início</a></li>
-          <li><a href="#solucoes" onclick="scrollToSection(event, 'solucoes')">O que fazemos</a></li>
-          <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como funciona</a></li>
+          <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
+          <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
+          <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
         </ul>
       </div>
       
+      <!-- Legal Column -->
       <div class="footer-col">
-        <h4>Legal</h4>
+        <h4>Políticas</h4>
         <ul>
           <li><a href="/termos" onclick="handleLinkClick(event, '/termos')">Termos de Uso</a></li>
-          <li><a href="/privacidade" onclick="handleLinkClick(event, '/privacidade')">Política de Privacidade</a></li>
+          <li><a href="/privacidade" onclick="handleLinkClick(event, '/privacidade')">Privacidade</a></li>
           <li><a href="/etica" onclick="handleLinkClick(event, '/etica')">Código de Ética</a></li>
         </ul>
       </div>
       
+      <!-- Contact Column -->
       <div class="footer-col">
-        <h4>Contato</h4>
-        <ul style="gap: 1.25rem;">
+        <h4>Fale Conosco</h4>
+        <ul>
           <li class="footer-contact-item">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span>contato@neurautomation.com</span>
           </li>
           <li class="footer-contact-item">
-            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <span>Av. Cásper Líbero, 538, Sala 42 B, Centro, São Paulo - SP</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>@neurautomation</span>
           </li>
         </ul>
       </div>
     </div>
     
     <div class="container footer-bottom">
-      <p>© 2026 NEURAUTOMATION LTDA. Todos os direitos reservados.</p>
-      <p>CNPJ: 54.498.411/0001-38</p>
+      <p class="footer-legal-text">
+        <strong>Aviso de Conformidade CFM:</strong> Todos os conteúdos publicados, peças de publicidade, fluxos de mensagens automáticas e orientações geradas por nossas ferramentas tecnológicas são elaborados sob estrita conformidade com a Resolução CFM nº 2.336/2023, que rege a publicidade e propaganda dos médicos inscritos no Conselho Federal de Medicina brasileiro, não prometendo diagnósticos, garantias de resultados ou realizando mercantilização desproporcional da medicina.
+      </p>
+      <div class="footer-bottom-row">
+        <p>© 2026 Neurautomation. Todos os direitos reservados.</p>
+        <p>Razão Social: NEURAUTOMATION LTDA | CNPJ: 54.498.411/0001-38</p>
+      </div>
     </div>
   </footer>
 
-  <!-- JavaScript Router and UI logic -->
+  <!-- JavaScript SPA Router and Form Logic -->
   <script>
-    // Navbar Scroll Effect
+    // Header Scroll Shadow Effect
     window.addEventListener('scroll', () => {
       const header = document.getElementById('site-header');
-      if (window.scrollY > 20) {
+      if (window.scrollY > 30) {
         header.classList.add('header-scrolled');
       } else {
         header.classList.remove('header-scrolled');
       }
     });
 
-    // Mobile Menu Toggle
+    // Mobile Hamburger Menu Trigger
     const menuBtn = document.getElementById('menu-btn');
     const navMenu = document.getElementById('nav-menu');
 
@@ -1455,23 +2324,165 @@
       navMenu.classList.toggle('active');
     });
 
-    // Client-side Router Logic
+    // Close mobile menu on clicking links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // FAQ Accordion Toggle Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Phone Mask helper for professional WhatsApp input
+    const phoneInput = document.getElementById('form-whatsapp');
+    phoneInput.addEventListener('input', (e) => {
+      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+      e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+
+    // Form Submission Lead qualification and Redirect to WhatsApp
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn-inner');
+      const formElement = document.getElementById('diagnostico-form');
+      const successBox = document.getElementById('form-success');
+      
+      // Get values
+      const nome = document.getElementById('form-nome').value.trim();
+      const clinica = document.getElementById('form-clinica').value.trim();
+      const especialidade = document.getElementById('form-especialidade').value;
+      const whatsapp = document.getElementById('form-whatsapp').value.trim();
+      const cidade = document.getElementById('form-cidade').value.trim();
+
+      // Show processing state in submit button
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.8';
+      submitBtn.textContent = 'Enviando dados...';
+
+      // Simulation steps for high conversion premium feedback
+      setTimeout(() => {
+        submitBtn.textContent = 'Analisando especialidade...';
+        
+        setTimeout(() => {
+          submitBtn.textContent = 'Gerando diagnóstico de IA...';
+          
+          setTimeout(() => {
+            // Hide Form & show Success Box
+            formElement.style.display = 'none';
+            successBox.style.display = 'flex';
+            
+            // Format WhatsApp Message
+            const whatsappNumber = '5511934281525';
+            const baseText = `Olá Neurautomation! Acabei de solicitar meu diagnóstico gratuito pelo site.\n\n*Dados da Clínica:*\n*Nome:* ${nome}\n*Clínica:* ${clinica}\n*Especialidade:* ${especialidade}\n*WhatsApp:* ${whatsapp}\n*Cidade:* ${cidade}`;
+            const encodedText = encodeURIComponent(baseText);
+            const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedText}`;
+            
+            // Apply to button href
+            const waSuccessBtn = document.getElementById('whatsapp-success-btn');
+            waSuccessBtn.href = whatsappLink;
+            
+            // Attempt auto-popup redirect (opens in a new tab)
+            window.open(whatsappLink, '_blank');
+            
+          }, 600);
+        }, 600);
+      }, 600);
+    }
+
+    // Live AI Console Simulator (Futuristic Robot Logs & Code lines)
+    const terminalLines = [
+      { text: "⚡ neurautomation init --agent=medical_aesthetic", color: "#60a5fa" },
+      { text: "🔧 Loading clinical NLP models (CFM Ethics Mode: ON)... OK", color: "#34d399" },
+      { text: "🤖 Virtual assistant robot online. Listening to channels...", color: "#c084fc" },
+      { text: "📥 [Instagram Direct] New lead inquiry received...", color: "#f87171" },
+      { text: "💬 Patient: 'Olá! Gostaria de marcar um botox para sexta.'", color: "#ffffff" },
+      { text: "🧠 AI Reasoning: Intent=[Booking] Procedure=[Botox] Confidence=99.8%", color: "#fbbf24" },
+      { text: "⚙️ Querying clinical calendar slots via CRM API...", color: "#38bdf8" },
+      { text: "📤 [WhatsApp API] Sending automated smart scheduling options...", color: "#34d399" },
+      { text: "   └ 'Olá! Temos vagas para sexta às 10h ou às 14h. Qual prefere?'", color: "#94a3b8" },
+      { text: "📥 [WhatsApp API] Patient response: 'Às 10h é perfeito!'", color: "#ffffff" },
+      { text: "📅 [CRM Sync] Appointment booked. Slot Friday 10:00 AM: CONFIRMED.", color: "#34d399" },
+      { text: "🔄 MAPPING: Scanning inactive patient database (> 90 days)...", color: "#fbbf24" },
+      { text: "📤 Reengagement: 18 personalized checkups sent. 5 replies.", color: "#34d399" },
+      { text: "📈 System status: 100% active. 0% manual work. You only consult.", color: "#60a5fa" }
+    ];
+
+    function runTerminalSimulation() {
+      const terminal = document.getElementById("console-terminal");
+      if (!terminal) return;
+      
+      terminal.innerHTML = "";
+      let lineIdx = 0;
+      
+      function addLine() {
+        if (lineIdx >= terminalLines.length) {
+          // Restart log loop after delay
+          setTimeout(() => {
+            terminal.innerHTML = "";
+            lineIdx = 0;
+            addLine();
+          }, 4500);
+          return;
+        }
+        
+        const lineData = terminalLines[lineIdx];
+        const lineElement = document.createElement("div");
+        lineElement.className = "terminal-line";
+        lineElement.style.color = lineData.color;
+        lineElement.textContent = lineData.text;
+        
+        terminal.appendChild(lineElement);
+        // Scroll terminal to view bottom
+        terminal.scrollTop = terminal.scrollHeight;
+        
+        lineIdx++;
+        // Simulate organic robot typing speed intervals
+        setTimeout(addLine, Math.random() * 600 + 400);
+      }
+      
+      addLine();
+    }
+
+    // Client-side Router Logic for Multi-page Experience (SPA)
     function handleRoute() {
       const path = window.location.pathname;
       
       // Hide mobile menu if open
       navMenu.classList.remove('active');
 
-      // Hide all views
+      // Hide all main page content views
       document.getElementById('view-home').classList.add('hidden');
       document.getElementById('view-termos').classList.add('hidden');
       document.getElementById('view-privacidade').classList.add('hidden');
       document.getElementById('view-etica').classList.add('hidden');
 
-      // Remove active classes
+      // Remove active navigation underlines
       document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
-      // Show matching view
+      // Route Matching
       if (path === '/termos') {
         document.getElementById('view-termos').classList.remove('hidden');
         document.title = "Termos de Uso - Neurautomation";
@@ -1480,16 +2491,18 @@
         document.title = "Política de Privacidade - Neurautomation";
       } else if (path === '/etica') {
         document.getElementById('view-etica').classList.remove('hidden');
-        document.querySelector('.nav-item-etica').classList.add('active');
-        document.title = "Código de Ética - Neurautomation";
+        document.title = "Código de Ética Comercial - Neurautomation";
       } else {
-        // Fallback to Home
+        // Fallback to Home View
         document.getElementById('view-home').classList.remove('hidden');
         document.querySelector('.nav-item-home').classList.add('active');
-        document.title = "Neurautomation - Agentes de IA & Automação";
+        document.title = "Neurautomation - Marketing com Inteligência Artificial para Clínicas Médicas e Estética";
+        
+        // Trigger live simulation inside Home hero
+        runTerminalSimulation();
       }
 
-      // Scroll window to top
+      // Scroll view to top immediately on route change
       window.scrollTo(0, 0);
     }
 
@@ -1500,25 +2513,49 @@
     }
 
     function scrollToSection(e, sectionId) {
-      // If we are not on home page, navigate to home first, then scroll
+      e.preventDefault();
+      
+      // Close mobile menu if active
+      navMenu.classList.remove('active');
+
+      // If user is currently on a legal subpage, route back to home first, then scroll
       if (window.location.pathname !== '/') {
-        e.preventDefault();
         window.history.pushState(null, '', '/');
         handleRoute();
         setTimeout(() => {
           const element = document.getElementById(sectionId);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          if (element) {
+            const offset = 80; // height of sticky header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 150);
       } else {
-        // We are already on home, scroll directly
-        e.preventDefault();
-        navMenu.classList.remove('active');
+        // Already on home view, smooth scroll to anchor
         const element = document.getElementById(sectionId);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
+        if (element) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
       }
     }
 
-    // Initialize Router
+    // Initialize SPA Router Listeners
     window.addEventListener('popstate', handleRoute);
     document.addEventListener('DOMContentLoaded', handleRoute);
   </script>
