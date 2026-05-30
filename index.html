@@ -21,1641 +21,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <style>
-    /* Design Tokens / CSS Variables (Premium Dark Mode) */
-    :root {
-      --font-title: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
-
-      --bg-primary: #030712;      /* Midnight Black/Slate */
-      --bg-secondary: #090d16;    /* Dark Navy Slate */
-      --bg-tertiary: #0f172a;     /* Slate 900 */
-      --bg-accent-light: rgba(37, 99, 235, 0.08);
-      --bg-dark: #020617;
-      
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --text-white: #ffffff;
-
-      --primary: #2563eb;         /* Electric Blue */
-      --primary-hover: #3b82f6;
-      --primary-glow: rgba(37, 99, 235, 0.25);
-
-      --accent: #10b981;          /* Neon Emerald */
-      --accent-hover: #34d399;
-      --accent-glow: rgba(16, 185, 129, 0.15);
-
-      --border-light: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(255, 255, 255, 0.15);
-      
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
-      --shadow-premium: 0 35px 70px -15px rgba(0, 0, 0, 0.8);
-
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
-      --radius-full: 9999px;
-      
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Reset & Base Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background-color: var(--bg-primary);
-      color: var(--text-secondary);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      line-height: 1.6;
-      position: relative;
-    }
-
-    h1, h2, h3, h4, .font-display {
-      font-family: var(--font-title);
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    /* Glow Blobs background */
-    .glow-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .glow-blob {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(99, 102, 241, 0.03) 50%, rgba(0,0,0,0) 100%);
-      filter: blur(100px);
-      animation: float 25s infinite alternate ease-in-out;
-    }
-
-    .glow-blob-1 {
-      top: -200px;
-      left: -100px;
-    }
-
-    .glow-blob-2 {
-      top: 800px;
-      right: -200px;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(37, 99, 235, 0.02) 50%, rgba(0,0,0,0) 100%);
-      animation-delay: -5s;
-    }
-
-    .glow-blob-3 {
-      top: 2200px;
-      left: -200px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(37, 99, 235, 0.03) 50%, rgba(0,0,0,0) 100%);
-      animation-delay: -10s;
-    }
-
-    @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(60px, 80px) scale(1.15); }
-      100% { transform: translate(-30px, -40px) scale(0.9); }
-    }
-
-    /* Layout Utilities */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section {
-      padding: 8rem 0;
-      position: relative;
-    }
-
-    .bg-secondary {
-      background-color: var(--bg-secondary);
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .bg-tertiary {
-      background-color: var(--bg-tertiary);
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 4.5rem auto;
-    }
-
-    .section-header h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-
-    .section-header p {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(37, 99, 235, 0.15);
-      color: #3b82f6;
-      font-size: 0.825rem;
-      font-weight: 600;
-      padding: 0.45rem 1.1rem;
-      border-radius: var(--radius-full);
-      margin-bottom: 1.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border: 1px solid rgba(37, 99, 235, 0.25);
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background-color: #3b82f6;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.5); opacity: 0.4; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Premium Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 0.875rem 1.75rem;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      border: none;
-      transition: var(--transition);
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background-color: var(--primary);
-      color: var(--text-white);
-      box-shadow: 0 4px 14px var(--primary-glow);
-    }
-
-    .btn-primary:hover {
-      background-color: var(--primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-secondary {
-      background-color: rgba(255, 255, 255, 0.03);
-      color: var(--text-primary);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      border-color: var(--border-focus);
-      transform: translateY(-2px);
-    }
-
-    /* Header & Navigation */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      background: rgba(3, 7, 18, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-light);
-      transition: var(--transition);
-    }
-
-    .header-scrolled {
-      background: rgba(3, 7, 18, 0.92);
-      box-shadow: var(--shadow-md);
-      padding: 0.25rem 0;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 4.5rem;
-    }
-
-    .logo-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 800;
-      font-size: 1.35rem;
-      font-family: var(--font-title);
-      color: var(--text-primary);
-    }
-
-    .logo-img {
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 6px;
-      object-fit: cover;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.25rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 0.925rem;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after, .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--text-white);
-    }
-
-    .header-cta {
-      display: flex;
-      align-items: center;
-    }
-
-    .mobile-only-cta {
-      display: none !important;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    /* Hero Layout (Side-by-Side) */
-    .hero {
-      padding-top: 6.5rem;
-      padding-bottom: 6.5rem;
-    }
-
-    #video-demonstracao {
-      padding-top: 11rem;
-      padding-bottom: 6.5rem;
-      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08) 0%, rgba(3,7,18,0) 60%);
-    }
-
-    .hero-grid-layout {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 3.5rem;
-      align-items: center;
-      text-align: left;
-      margin-bottom: 4.5rem;
-    }
-
-    .hero-content-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--text-primary);
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      margin-bottom: 2.5rem;
-      line-height: 1.6;
-      font-weight: 400;
-      text-align: left;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1.25rem;
-      margin-bottom: 0;
-      flex-wrap: wrap;
-    }
-
-    /* Futuristic AI Agent Console */
-    .hero-graphic-right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .hero-console {
-      width: 100%;
-      max-width: 480px;
-      height: 360px;
-      background-color: #020617;
-      border: 1px solid #1e293b;
-      border-radius: var(--radius-md);
-      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .console-header {
-      background-color: #0f172a;
-      padding: 0.8rem 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #1e293b;
-      user-select: none;
-    }
-
-    .console-dots {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .console-dots .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .console-dots .dot.red { background-color: #ef4444; }
-    .console-dots .dot.yellow { background-color: #fbbf24; }
-    .console-dots .dot.green { background-color: #10b981; }
-
-    .console-title {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      color: #64748b;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-
-    .console-status {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: #10b981;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .pulse-indicator {
-      width: 6px;
-      height: 6px;
-      background-color: #10b981;
-      border-radius: 50%;
-      animation: pulse 1.5s infinite;
-    }
-
-    .console-body {
-      flex-grow: 1;
-      padding: 1.25rem;
-      overflow-y: auto;
-      background-color: #030712;
-      scroll-behavior: smooth;
-    }
-
-    .console-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .console-body::-webkit-scrollbar-track {
-      background: #030712;
-    }
-    .console-body::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 3px;
-    }
-
-    .terminal-line {
-      margin-bottom: 0.6rem;
-      font-size: 0.825rem;
-      font-family: Consolas, Monaco, 'Courier New', monospace;
-      line-height: 1.4;
-      text-align: left;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    /* Video Section Styling */
-    .video-wrapper {
-      max-width: 850px;
-      margin: 0 auto;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-premium);
-      background-color: var(--bg-dark);
-      width: 100%;
-    }
-
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      height: 0;
-      overflow: hidden;
-    }
-
-    .video-container iframe, .video-container video, .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .video-placeholder {
-      background: linear-gradient(135deg, #090d16 0%, #0f172a 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .video-placeholder:hover {
-      opacity: 0.9;
-    }
-
-    .video-play-btn {
-      width: 4.5rem;
-      height: 4.5rem;
-      border-radius: 50%;
-      background-color: var(--primary);
-      color: var(--text-white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
-      transition: var(--transition);
-      margin-bottom: 1.25rem;
-    }
-
-    .video-play-btn svg {
-      width: 1.75rem;
-      height: 1.75rem;
-      margin-left: 0.25rem;
-    }
-
-    .video-placeholder:hover .video-play-btn {
-      transform: scale(1.1);
-      background-color: var(--primary-hover);
-      box-shadow: 0 0 35px rgba(37, 99, 235, 0.6);
-    }
-
-    .video-overlay-text {
-      font-family: var(--font-title);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      padding: 0 1rem;
-      text-align: center;
-    }
-
-    /* Channels Trust Bar */
-    .channels-bar {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-      border-top: 1px solid var(--border-light);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    .channels-title {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
-    .channels-list {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .channel-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      transition: var(--transition);
-    }
-
-    .channel-item:hover {
-      color: var(--text-primary);
-    }
-
-    .channel-item svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      fill: currentColor;
-    }
-
-    /* Dor (Problems) Section */
-    .pains-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .pain-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .pain-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-premium);
-      border-color: rgba(239, 68, 68, 0.25);
-    }
-
-    .pain-icon-wrapper {
-      width: 3rem;
-      height: 3rem;
-      border-radius: var(--radius-md);
-      background-color: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid rgba(239, 68, 68, 0.25);
-    }
-
-    .pain-icon-wrapper svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-    }
-
-    .pain-card h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .pain-card p {
-      font-size: 0.975rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Solução (Solutions) Section */
-    .solutions-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .solution-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .solution-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-premium);
-      border-color: var(--primary);
-    }
-
-    .solution-icon-wrapper {
-      width: 3.25rem;
-      height: 3.25rem;
-      border-radius: var(--radius-md);
-      background-color: rgba(37, 99, 235, 0.15);
-      color: #60a5fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      border: 1px solid rgba(37, 99, 235, 0.2);
-    }
-
-    .solution-card:hover .solution-icon-wrapper {
-      background-color: var(--primary);
-      color: var(--text-white);
-      border-color: var(--primary);
-    }
-
-    .solution-icon-wrapper svg {
-      width: 1.6rem;
-      height: 1.6rem;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .solution-card h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .solution-card p {
-      font-size: 0.975rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Segmentos Section (Niche Expansion) */
-    .segments-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .segment-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      position: relative;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .segment-card.active {
-      border: 2px solid var(--primary);
-      box-shadow: 0 0 25px rgba(37, 99, 235, 0.15);
-    }
-
-    .segment-card.pending {
-      background: rgba(15, 23, 42, 0.15);
-      opacity: 0.65;
-      border-style: dashed;
-    }
-
-    .segment-status {
-      align-self: flex-start;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.25rem 0.6rem;
-      border-radius: var(--radius-sm);
-    }
-
-    .active .segment-status {
-      background-color: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-    }
-
-    .pending .segment-status {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
-    }
-
-    .segment-icon-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .segment-icon-header svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--primary);
-    }
-
-    .pending .segment-icon-header svg {
-      color: var(--text-muted);
-    }
-
-    .segment-card h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
-    .segment-card p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    /* Prova Social / Resultados */
-    .cases-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 5rem;
-    }
-
-    .case-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-    }
-
-    .case-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--border-focus);
-    }
-
-    .case-header {
-      padding: 1.75rem 2rem;
-      border-bottom: 1px solid var(--border-light);
-      background-color: rgba(9, 13, 22, 0.6);
-    }
-
-    .case-badge {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .case-header h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-top: 0.25rem;
-    }
-
-    .case-body {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      flex-grow: 1;
-    }
-
-    .case-result {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: #60a5fa;
-      font-family: var(--font-title);
-      line-height: 1.2;
-    }
-
-    .case-detail {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Impact Numbers Bar */
-    .stats-bar {
-      border: 1px solid var(--border-light);
-      background-color: rgba(9, 13, 22, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: var(--radius-xl);
-      padding: 3rem 2rem;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      gap: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-
-    .stat-item {
-      text-align: center;
-      flex: 1;
-    }
-
-    .stat-item:not(:last-child) {
-      border-right: 1px solid var(--border-light);
-    }
-
-    .stat-number {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      font-family: var(--font-title);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      font-weight: 600;
-      max-width: 200px;
-      margin: 0 auto;
-    }
-
-    /* Planos e Preços */
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      align-items: stretch;
-      margin-bottom: 3rem;
-    }
-
-    .plan-card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      padding: 3rem 2.25rem;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .plan-card:hover {
-      box-shadow: var(--shadow-lg);
-    }
-
-    .plan-card.popular {
-      border: 2.5px solid var(--primary);
-      box-shadow: 0 0 35px rgba(37, 99, 235, 0.2);
-      transform: translateY(-8px);
-    }
-
-    .plan-card.popular:hover {
-      transform: translateY(-10px);
-    }
-
-    .popular-tag {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: var(--primary);
-      color: var(--text-white);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.35rem 1rem;
-      border-radius: var(--radius-full);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .plan-name {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 700;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .popular .plan-name {
-      color: #60a5fa;
-    }
-
-    .plan-price {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      font-family: var(--font-title);
-      margin-bottom: 0.5rem;
-    }
-
-    .plan-price span {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      font-family: var(--font-body);
-    }
-
-    .plan-desc {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      min-height: 2.5rem;
-    }
-
-    .plan-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.875rem;
-      margin-bottom: 2.5rem;
-      flex-grow: 1;
-    }
-
-    .plan-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 0.925rem;
-      color: var(--text-secondary);
-    }
-
-    .plan-features li svg {
-      width: 1.15rem;
-      height: 1.15rem;
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-
-    .plan-cta {
-      width: 100%;
-    }
-
-    .plans-note {
-      text-align: center;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Linha do Tempo (Onboarding) */
-    .timeline-container {
-      position: relative;
-      margin-top: 3rem;
-    }
-
-    .timeline-line {
-      position: absolute;
-      top: 2rem;
-      left: 5%;
-      width: 90%;
-      height: 2px;
-      background-color: var(--border-light);
-      z-index: 1;
-    }
-
-    .timeline-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .timeline-step {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .timeline-dot {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      background-color: var(--bg-secondary);
-      border: 2px solid var(--border-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      font-family: var(--font-title);
-      margin-bottom: 1.5rem;
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .timeline-step:hover .timeline-dot {
-      border-color: var(--primary);
-      color: #60a5fa;
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
-    }
-
-    .timeline-step h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-step p {
-      font-size: 0.925rem;
-      color: var(--text-secondary);
-      max-width: 240px;
-    }
-
-    /* FAQ Accordion */
-    .faq-list {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .faq-item {
-      background-color: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .faq-item:hover {
-      border-color: var(--border-focus);
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 1.5rem 2rem;
-      background: none;
-      border: none;
-      text-align: left;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      font-family: var(--font-title);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      background-color: rgba(9, 13, 22, 0.4);
-    }
-
-    .faq-answer-inner {
-      padding: 1.5rem 2rem;
-      font-size: 0.975rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .faq-icon {
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-icon {
-      transform: rotate(45deg);
-      color: #60a5fa;
-    }
-
-    .faq-item.active {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* Form Replacement CSS */
-    .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: rgba(9, 13, 22, 0.7);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      padding: 3rem;
-      box-shadow: var(--shadow-premium);
-      width: 100%;
-    }
-
-    .form-note {
-      text-align: center;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      margin-top: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-
-    /* Success Icon wrapper for direct CTA */
-    .success-icon-wrapper {
-      width: 4.5rem;
-      height: 4.5rem;
-      border-radius: 50%;
-      background-color: rgba(37, 99, 235, 0.15);
-      color: #60a5fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.5rem;
-      border: 1px solid rgba(37, 99, 235, 0.25);
-    }
-
-    .success-icon-wrapper svg {
-      width: 2.25rem;
-      height: 2.25rem;
-    }
-
-    /* Legal Pages / Prose views */
-    .prose-section {
-      padding-top: 10rem;
-      padding-bottom: 7rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .prose-title {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-      color: var(--text-primary);
-    }
-
-    .prose-meta {
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      margin-bottom: 3rem;
-      display: block;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-    }
-
-    .prose-content {
-      color: var(--text-secondary);
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    .prose-content h2 {
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .prose-content p {
-      margin-bottom: 1.25rem;
-    }
-
-    .prose-content ul, .prose-content ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .prose-contact-box {
-      background-color: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      margin-top: 3rem;
-    }
-
-    .prose-contact-box h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
-    }
-
-    .prose-contact-box p {
-      font-size: 0.95rem;
-      margin-bottom: 0;
-    }
-
-    /* Footer */
-    footer {
-      background: #02040a;
-      color: rgba(255, 255, 255, 0.6);
-      padding: 6rem 0 3rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr repeat(3, 1fr);
-      gap: 4rem;
-      margin-bottom: 4rem;
-    }
-
-    .footer-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .footer-brand-title {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-family: var(--font-title);
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-white);
-    }
-
-    .footer-logo {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 6px;
-    }
-
-    .footer-desc {
-      font-size: 0.925rem;
-      line-height: 1.6;
-      max-width: 320px;
-    }
-
-    .footer-col h4 {
-      color: var(--text-white);
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .footer-col a {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.925rem;
-    }
-
-    .footer-col a:hover {
-      color: var(--text-white);
-      padding-left: 4px;
-    }
-
-    .footer-contact-item {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .footer-contact-item svg {
-      flex-shrink: 0;
-      width: 1.15rem;
-      height: 1.15rem;
-      margin-top: 0.2rem;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.35);
-    }
-
-    .footer-bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-legal-text {
-      line-height: 1.6;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.45);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 1rem;
-    }
-
-    /* Single Page App Utilities */
-    .hidden {
-      display: none !important;
-    }
-
-    .view-content {
-      animation: fadeIn 0.4s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Mobile Responsive styling */
-    @media (max-width: 1024px) {
-      .hero-grid-layout {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 3rem;
-      }
-      .hero-content-left {
-        align-items: center;
-      }
-      .hero h1 {
-        font-size: 3rem;
-      }
-      .hero-subtitle {
-        text-align: center;
-      }
-      .hero-ctas {
-        justify-content: center;
-      }
-      .hero-console {
-        margin: 0 auto;
-      }
-      .pains-grid, .solutions-grid, .segments-grid, .cases-grid, .plans-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .timeline-steps {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
-      }
-      .timeline-line {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .section {
-        padding: 5rem 0;
-      }
-
-      .section-header h2 {
-        font-size: 2rem;
-      }
-
-      #video-demonstracao {
-        padding-top: 7.5rem !important;
-        padding-bottom: 4rem !important;
-      }
-
-      .hero {
-        padding-top: 4rem !important;
-        padding-bottom: 4rem !important;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 4.5rem;
-        left: 0;
-        width: 100%;
-        background: rgba(3, 7, 18, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border-light);
-        padding: 2.5rem;
-        flex-direction: column;
-        gap: 1.75rem;
-        text-align: center;
-        box-shadow: var(--shadow-lg);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .mobile-only-cta {
-        display: block !important;
-        margin-top: 0.5rem;
-      }
-
-      .mobile-only-cta .btn {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-      }
-
-      .header-cta {
-        display: none; /* Hide top right button in mobile */
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1.1rem;
-      }
-
-      .hero-ctas {
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 320px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .pains-grid, .solutions-grid, .segments-grid, .cases-grid, .plans-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .plan-card.popular {
-        transform: none;
-      }
-
-      .plan-card.popular:hover {
-        transform: translateY(-5px);
-      }
-
-      .stats-bar {
-        flex-direction: column;
-        padding: 2rem;
-        gap: 2rem;
-      }
-
-      .stat-item {
-        width: 100%;
-      }
-
-      .stat-item:not(:last-child) {
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-        padding-bottom: 1.5rem;
-      }
-
-      .timeline-steps {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .timeline-dot {
-        margin-bottom: 1rem;
-      }
-
-      .form-container {
-        padding: 3rem 1.5rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem !important;
-      }
-      .hero-subtitle {
-        font-size: 0.975rem !important;
-      }
-      .section-header h2 {
-        font-size: 1.75rem !important;
-      }
-      .pain-card, .solution-card, .plan-card {
-        padding: 1.5rem !important;
-      }
-      .segment-card, .case-card {
-        padding: 1.25rem !important;
-      }
-      .case-header {
-        padding: 1rem 1.25rem !important;
-      }
-      .case-body {
-        padding: 1.25rem !important;
-      }
-      .form-container {
-        padding: 2rem 1.25rem !important;
-      }
-      .hero-console {
-        height: 280px !important;
-      }
-      .terminal-line {
-        font-size: 0.725rem !important;
-      }
-      .btn {
-        padding: 0.75rem 1.5rem !important;
-        font-size: 0.9rem !important;
-      }
-      .timeline-dot {
-        width: 3.5rem !important;
-        height: 3.5rem !important;
-        font-size: 1.1rem !important;
-        margin-bottom: 0.75rem !important;
-      }
-    }
-  </style>
+  <!-- Link to External Stylesheet -->
+  <link rel="stylesheet" href="/index.css" />
 </head>
 
 <body>
+
+  <!-- Reusable SVG Symbols -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/>
+    </symbol>
+  </svg>
 
   <!-- Background Decorative Glowing Blobs -->
   <div class="glow-container">
@@ -1674,7 +51,6 @@
       
       <ul class="nav-links" id="nav-menu">
         <li><a href="/" onclick="handleLinkClick(event, '/')" class="nav-item-home">Início</a></li>
-        <li><a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')">Vídeo</a></li>
         <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
         <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
         <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
@@ -1749,11 +125,8 @@
             
             <div class="hero-ctas">
               <a href="https://api.whatsapp.com/send?phone=5511977426964&text=Olá!+Quero+testar+a+IA+de+estética+para+clínicas." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);">
-                <svg style="width:1.25rem; height:1.25rem; fill:currentColor;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
-                Testar IA de Estética
-              </a>
-              <a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')" class="btn btn-secondary">
-                Assistir Vídeo
+                <svg style="width:1.25rem; height:1.25rem; fill:currentColor;"><use href="#icon-whatsapp"/></svg>
+                Testar IA da Clínica de Estética
               </a>
             </div>
           </div>
@@ -1784,7 +157,7 @@
           <span class="channels-title">Integração nativa com os principais canais de aquisição</span>
           <div class="channels-list">
             <div class="channel-item">
-              <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+              <svg style="width:1.25rem; height:1.25rem; fill:currentColor;"><use href="#icon-whatsapp"/></svg>
               <span>WhatsApp</span>
             </div>
             <div class="channel-item">
@@ -1816,9 +189,9 @@
             <p>Três falhas comuns nos bastidores da sua operação que custam dezenas de consultas fechadas todos os meses.</p>
           </div>
           
-          <div class="pains-grid">
+          <div class="pains-grid grid-3">
             <!-- Bloco 1 -->
-            <div class="pain-card">
+            <div class="pain-card glass-card">
               <div class="pain-icon-wrapper">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </div>
@@ -1827,7 +200,7 @@
             </div>
             
             <!-- Bloco 2 -->
-            <div class="pain-card">
+            <div class="pain-card glass-card">
               <div class="pain-icon-wrapper">
                 <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               </div>
@@ -1836,7 +209,7 @@
             </div>
             
             <!-- Bloco 3 -->
-            <div class="pain-card">
+            <div class="pain-card glass-card">
               <div class="pain-icon-wrapper">
                 <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="23" y1="11" x2="17" y2="11"></line></svg>
               </div>
@@ -1856,9 +229,9 @@
             <p>Não é uma ferramenta solta. É uma operação de marketing inteira com IA funcionando em paralelo aos atendimentos da sua clínica.</p>
           </div>
           
-          <div class="solutions-grid">
+          <div class="solutions-grid grid-3">
             <!-- Card 1 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               </div>
@@ -1867,7 +240,7 @@
             </div>
             
             <!-- Card 2 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
               </div>
@@ -1876,7 +249,7 @@
             </div>
             
             <!-- Card 3 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               </div>
@@ -1885,7 +258,7 @@
             </div>
             
             <!-- Card 4 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
               </div>
@@ -1894,7 +267,7 @@
             </div>
             
             <!-- Card 5 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               </div>
@@ -1903,7 +276,7 @@
             </div>
             
             <!-- Card 6 -->
-            <div class="solution-card">
+            <div class="solution-card glass-card">
               <div class="solution-icon-wrapper">
                 <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
               </div>
@@ -1923,9 +296,9 @@
             <p>Atualmente focados em estética médica, nosso sistema de IA está sendo adaptado para novos nichos em breve.</p>
           </div>
 
-          <div class="segments-grid">
+          <div class="segments-grid grid-3">
             <!-- Active Segment -->
-            <div class="segment-card active">
+            <div class="segment-card glass-card active">
               <span class="segment-status">Operando</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -1935,7 +308,7 @@
             </div>
 
             <!-- Future Segments -->
-            <div class="segment-card pending">
+            <div class="segment-card glass-card pending">
               <span class="segment-status">Lista de Espera</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5v-15z"/></svg>
@@ -1944,7 +317,7 @@
               <p>Expansão programada com fluxo otimizado para implantes, alinhadores transparentes e estética dental.</p>
             </div>
 
-            <div class="segment-card pending">
+            <div class="segment-card glass-card pending">
               <span class="segment-status">Lista de Espera</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
@@ -1953,7 +326,7 @@
               <p>Rotinas automatizadas de acompanhamento preventivo, pré-natal e retorno anual de pacientes.</p>
             </div>
 
-            <div class="segment-card pending">
+            <div class="segment-card glass-card pending">
               <span class="segment-status">Lista de Espera</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
@@ -1962,7 +335,7 @@
               <p>Triagem com acolhimento e agendamentos periódicos recorrentes com foco total em privacidade.</p>
             </div>
 
-            <div class="segment-card pending">
+            <div class="segment-card glass-card pending">
               <span class="segment-status">Lista de Espera</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -1971,7 +344,7 @@
               <p>Automação e qualificação de leads de causas cíveis, trabalhistas ou corporativas.</p>
             </div>
 
-            <div class="segment-card pending">
+            <div class="segment-card glass-card pending">
               <span class="segment-status">Lista de Espera</span>
               <div class="segment-icon-header">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -1992,9 +365,9 @@
             <p>Deixamos curtidas de lado e focamos estritamente no crescimento financeiro e na otimização de tempo médico.</p>
           </div>
 
-          <div class="cases-grid">
+          <div class="cases-grid grid-3">
             <!-- Case 1 -->
-            <div class="case-card">
+            <div class="case-card glass-card">
               <div class="case-header">
                 <span class="case-badge">Dermatologia Estética — São Paulo</span>
                 <h3>Dr. Ricardo M.</h3>
@@ -2006,7 +379,7 @@
             </div>
 
             <!-- Case 2 -->
-            <div class="case-card">
+            <div class="case-card glass-card">
               <div class="case-header">
                 <span class="case-badge">Harmonização Facial — Campinas</span>
                 <h3>Dra. Beatriz S.</h3>
@@ -2018,13 +391,13 @@
             </div>
 
             <!-- Case 3 -->
-            <div class="case-card">
+            <div class="case-card glass-card">
               <div class="case-header">
                 <span class="case-badge">Medicina Estética — Rio de Janeiro</span>
                 <h3>Dra. Clara P.</h3>
               </div>
               <div class="case-body">
-                <div class="case-result">R$22.000 reativados em 45 dias</div>
+                <div class="case-result">R$22.000 reativados in 45 dias</div>
                 <p class="case-detail"><strong>Antes:</strong> Base de dados com mais de 300 pacientes antigas totalmente esquecidas.<br/><strong>Depois:</strong> Disparador inteligente enviou abordagens personalizadas e reengajou clientes antigos.</p>
               </div>
             </div>
@@ -2057,51 +430,51 @@
             <p>Você começa pelo que resolve a maior dor de hoje e expande conforme sua clínica cresce.</p>
           </div>
 
-          <div class="plans-grid">
+          <div class="plans-grid grid-3">
             <!-- Plano Starter -->
-            <div class="plan-card">
+            <div class="plan-card glass-card">
               <div class="plan-name">Plano Starter</div>
               <div class="plan-price">R$ 2.500<span>/mês</span></div>
               <p class="plan-desc">Para clínicas em estágio inicial que precisam estruturar canais básicos de atração.</p>
               <ul class="plan-features">
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Conteúdo para Instagram (30 posts/mês)</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Meta Ads (Facebook e Instagram)</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Site integrado com agendamentos e CRM</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Google Meu Negócio estruturado</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Relatório mensal de resultados e suporte</li>
+                <li>Conteúdo para Instagram (30 posts/mês)</li>
+                <li>Meta Ads (Facebook e Instagram)</li>
+                <li>Site integrado com agendamentos e CRM</li>
+                <li>Google Meu Negócio estruturado</li>
+                <li>Relatório mensal de resultados e suporte</li>
               </ul>
               <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-secondary plan-cta">Escolher Starter</a>
             </div>
 
             <!-- Plano Crescimento (MAIS POPULAR) -->
-            <div class="plan-card popular">
+            <div class="plan-card glass-card popular">
               <div class="popular-tag">Mais Escolhido</div>
               <div class="plan-name">Plano Crescimento</div>
               <div class="plan-price">R$ 4.500<span>/mês</span></div>
               <p class="plan-desc">Para clínicas em expansão que querem automatizar processos de vendas e captação.</p>
               <ul class="plan-features">
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <strong>Tudo do Starter</strong></li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Atendimento WhatsApp automático 24/7</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Agendamento automático de consultas</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Google Ads & Meta Ads geridos por IA</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Reativação automática de pacientes</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Lembretes automáticos anti-faltas</li>
+                <li><strong>Tudo do Starter</strong></li>
+                <li>Atendimento WhatsApp automático 24/7</li>
+                <li>Agendamento automático de consultas</li>
+                <li>Google Ads & Meta Ads geridos por IA</li>
+                <li>Reativação automática de pacientes</li>
+                <li>Lembretes automáticos anti-faltas</li>
               </ul>
               <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary plan-cta">Escolher Crescimento</a>
             </div>
 
             <!-- Plano Sistema Completo -->
-            <div class="plan-card">
+            <div class="plan-card glass-card">
               <div class="plan-name">Sistema Completo</div>
               <div class="plan-price">R$ 8.000<span>/mês</span></div>
               <p class="plan-desc">Para clínicas premium que demandam suporte total e estratégias avançadas de branding.</p>
               <ul class="plan-features">
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <strong>Tudo do Crescimento</strong></li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Roteiros e edição de Reels do médico</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Programa de indicação automatizado</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Painel de métricas em tempo real</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Reunião quinzenal de alinhamento</li>
-                <li><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Integração com prontuário da clínica</li>
+                <li><strong>Tudo do Crescimento</strong></li>
+                <li>Roteiros e edição de Reels do médico</li>
+                <li>Programa de indicação automatizado</li>
+                <li>Painel de métricas em tempo real</li>
+                <li>Reunião quinzenal de alinhamento</li>
+                <li>Integração com prontuário da clínica</li>
               </ul>
               <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-secondary plan-cta">Escolher Sistema Completo</a>
             </div>
@@ -2266,7 +639,7 @@
               Clique no botão abaixo para abrir uma conversa direta no nosso canal comercial e receber o diagnóstico da sua clínica em até 2 horas úteis.
             </p>
             <a href="https://api.whatsapp.com/send?phone=5511977426964&text=Olá!+Gostaria+de+um+diagnóstico+gratuito+de+marketing+para+minha+clínica." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); font-weight: 700; width: 100%; max-width: 400px; padding: 1.1rem;">
-              <svg style="width:1.35rem; height:1.35rem; fill:currentColor; margin-right: 0.25rem;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+              <svg style="width:1.35rem; height:1.35rem; fill:currentColor; margin-right: 0.25rem;"><use href="#icon-whatsapp"/></svg>
               Iniciar Conversa no WhatsApp
             </a>
             <div class="form-note" style="margin-top: 0;">
@@ -2415,7 +788,6 @@
         <h4>Navegação</h4>
         <ul>
           <li><a href="/" onclick="handleLinkClick(event, '/')">Início</a></li>
-          <li><a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')">Vídeo</a></li>
           <li><a href="#como-funciona" onclick="scrollToSection(event, 'como-funciona')">Como Funciona</a></li>
           <li><a href="#resultados" onclick="scrollToSection(event, 'resultados')">Resultados</a></li>
           <li><a href="#planos" onclick="scrollToSection(event, 'planos')">Planos</a></li>
@@ -2461,204 +833,8 @@
     </div>
   </footer>
 
-  <!-- JavaScript SPA Router and Form Logic -->
-  <script>
-    // Header Scroll Shadow Effect
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('site-header');
-      if (window.scrollY > 30) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
-      }
-    });
-
-    // Mobile Hamburger Menu Trigger
-    const menuBtn = document.getElementById('menu-btn');
-    const navMenu = document.getElementById('nav-menu');
-
-    menuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    // Close mobile menu on clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // FAQ Accordion Toggle Logic
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
-
-      question.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-
-        // Close all other FAQ items
-        faqItems.forEach(otherItem => {
-          otherItem.classList.remove('active');
-          otherItem.querySelector('.faq-answer').style.maxHeight = null;
-        });
-
-        // Toggle current item
-        if (!isActive) {
-          item.classList.add('active');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-      });
-    });
-
-    // Live AI Console Simulator (Futuristic Robot Logs & Code lines)
-    const terminalLines = [
-      { text: "⚡ neurautomation init --agent=medical_aesthetic", color: "#60a5fa" },
-      { text: "🔧 Loading clinical NLP models (CFM Ethics Mode: ON)... OK", color: "#34d399" },
-      { text: "🤖 Virtual assistant robot online. Listening to channels...", color: "#c084fc" },
-      { text: "📥 [Instagram Direct] New lead inquiry received...", color: "#f87171" },
-      { text: "💬 Patient: 'Olá! Gostaria de marcar um botox para sexta.'", color: "#ffffff" },
-      { text: "🧠 AI Reasoning: Intent=[Booking] Procedure=[Botox] Confidence=99.8%", color: "#fbbf24" },
-      { text: "⚙️ Querying clinical calendar slots via CRM API...", color: "#38bdf8" },
-      { text: "📤 [WhatsApp API] Sending automated smart scheduling options...", color: "#34d399" },
-      { text: "   └ 'Olá! Temos vagas para sexta às 10h ou às 14h. Qual prefere?'", color: "#94a3b8" },
-      { text: "📥 [WhatsApp API] Patient response: 'Às 10h é perfeito!'", color: "#ffffff" },
-      { text: "📅 [CRM Sync] Appointment booked. Slot Friday 10:00 AM: CONFIRMED.", color: "#34d399" },
-      { text: "🔄 MAPPING: Scanning inactive patient database (> 90 days)...", color: "#fbbf24" },
-      { text: "📤 Reengagement: 18 personalized checkups sent. 5 replies.", color: "#34d399" },
-      { text: "📈 System status: 100% active. 0% manual work. You only consult.", color: "#60a5fa" }
-    ];
-
-    function runTerminalSimulation() {
-      const terminal = document.getElementById("console-terminal");
-      if (!terminal) return;
-      
-      terminal.innerHTML = "";
-      let lineIdx = 0;
-      
-      function addLine() {
-        if (lineIdx >= terminalLines.length) {
-          // Restart log loop after delay
-          setTimeout(() => {
-            terminal.innerHTML = "";
-            lineIdx = 0;
-            addLine();
-          }, 4500);
-          return;
-        }
-        
-        const lineData = terminalLines[lineIdx];
-        const lineElement = document.createElement("div");
-        lineElement.className = "terminal-line";
-        lineElement.style.color = lineData.color;
-        lineElement.textContent = lineData.text;
-        
-        terminal.appendChild(lineElement);
-        // Scroll terminal to view bottom
-        terminal.scrollTop = terminal.scrollHeight;
-        
-        lineIdx++;
-        // Simulate organic robot typing speed intervals
-        setTimeout(addLine, Math.random() * 600 + 400);
-      }
-      
-      addLine();
-    }
-
-    // Client-side Router Logic for Multi-page Experience (SPA)
-    function handleRoute() {
-      const path = window.location.pathname;
-      
-      // Hide mobile menu if open
-      navMenu.classList.remove('active');
-
-      // Hide all main page content views
-      document.getElementById('view-home').classList.add('hidden');
-      document.getElementById('view-termos').classList.add('hidden');
-      document.getElementById('view-privacidade').classList.add('hidden');
-      document.getElementById('view-etica').classList.add('hidden');
-
-      // Remove active navigation underlines
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-
-      // Route Matching
-      if (path === '/termos') {
-        document.getElementById('view-termos').classList.remove('hidden');
-        document.title = "Termos de Uso - Neurautomation";
-      } else if (path === '/privacidade') {
-        document.getElementById('view-privacidade').classList.remove('hidden');
-        document.title = "Política de Privacidade - Neurautomation";
-      } else if (path === '/etica') {
-        document.getElementById('view-etica').classList.remove('hidden');
-        document.title = "Código de Ética Comercial - Neurautomation";
-      } else {
-        // Fallback to Home View
-        document.getElementById('view-home').classList.remove('hidden');
-        document.querySelector('.nav-item-home').classList.add('active');
-        document.title = "Neurautomation - Marketing com Inteligência Artificial para Clínicas Médicas e Estética";
-        
-        // Trigger live simulation inside Home hero
-        runTerminalSimulation();
-      }
-
-      // Scroll view to top immediately on route change
-      window.scrollTo(0, 0);
-    }
-
-    function handleLinkClick(e, path) {
-      e.preventDefault();
-      window.history.pushState(null, '', path);
-      handleRoute();
-    }
-
-    function scrollToSection(e, sectionId) {
-      e.preventDefault();
-      
-      // Close mobile menu if active
-      navMenu.classList.remove('active');
-
-      // If user is currently on a legal subpage, route back to home first, then scroll
-      if (window.location.pathname !== '/') {
-        window.history.pushState(null, '', '/');
-        handleRoute();
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const offset = 80; // height of sticky header
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = element.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }, 150);
-      } else {
-        // Already on home view, smooth scroll to anchor
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const offset = 80;
-          const bodyRect = document.body.getBoundingClientRect().top;
-          const elementRect = element.getBoundingClientRect().top;
-          const elementPosition = elementRect - bodyRect;
-          const offsetPosition = elementPosition - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    }
-
-    // Initialize SPA Router Listeners
-    window.addEventListener('popstate', handleRoute);
-    document.addEventListener('DOMContentLoaded', handleRoute);
-  </script>
+  <!-- Link to External JavaScript -->
+  <script src="/app.js"></script>
 </body>
 
 </html>
