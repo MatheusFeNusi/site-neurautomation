@@ -348,6 +348,7 @@
       display: flex;
       gap: 1.25rem;
       margin-bottom: 0;
+      flex-wrap: wrap;
     }
 
     /* Futuristic AI Agent Console */
@@ -449,6 +450,80 @@
       font-family: Consolas, Monaco, 'Courier New', monospace;
       line-height: 1.4;
       text-align: left;
+    }
+
+    /* Video Section Styling */
+    .video-wrapper {
+      max-width: 850px;
+      margin: 0 auto;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-premium);
+      background-color: var(--bg-dark);
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe, .video-container video, .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .video-placeholder:hover {
+      opacity: 0.95;
+    }
+
+    .video-play-btn {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+      transition: var(--transition);
+      margin-bottom: 1.25rem;
+    }
+
+    .video-play-btn svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-left: 0.25rem; /* Optical alignment */
+    }
+
+    .video-placeholder:hover .video-play-btn {
+      transform: scale(1.1);
+      background-color: var(--primary-hover);
+      box-shadow: 0 0 35px rgba(37, 99, 235, 0.6);
+    }
+
+    .video-overlay-text {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     /* Channels Trust Bar */
@@ -1058,7 +1133,7 @@
       box-shadow: var(--shadow-md);
     }
 
-    /* Formulario Final */
+    /* Form Replacement CSS */
     .form-container {
       max-width: 600px;
       margin: 0 auto;
@@ -1067,45 +1142,6 @@
       border-radius: var(--radius-xl);
       padding: 3rem;
       box-shadow: var(--shadow-premium);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-input, .form-select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-light);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      background-color: var(--bg-secondary);
-      transition: var(--transition);
-    }
-
-    .form-input:focus, .form-select:focus {
-      outline: none;
-      border-color: var(--primary);
-      background-color: var(--bg-primary);
-      box-shadow: 0 0 0 3px var(--primary-glow);
-    }
-
-    .form-submit-btn {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-top: 1rem;
     }
 
     .form-note {
@@ -1119,21 +1155,7 @@
       gap: 0.5rem;
     }
 
-    /* Interactive Form Success Feedback Modal */
-    .form-success-box {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 1.5rem;
-      animation: zoomIn 0.4s ease forwards;
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
+    /* Success Icon wrapper for direct CTA */
     .success-icon-wrapper {
       width: 4.5rem;
       height: 4.5rem;
@@ -1144,28 +1166,11 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 0.5rem;
-      animation: bounce 1s infinite alternate;
-    }
-
-    @keyframes bounce {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-5px); }
     }
 
     .success-icon-wrapper svg {
       width: 2.25rem;
       height: 2.25rem;
-    }
-
-    .form-success-box h3 {
-      font-size: 1.6rem;
-      font-weight: 800;
-    }
-
-    .form-success-box p {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      max-width: 400px;
     }
 
     /* Legal Pages / Prose views */
@@ -1486,7 +1491,7 @@
       }
 
       .form-container {
-        padding: 2rem 1.5rem;
+        padding: 3rem 1.5rem;
       }
 
       .footer-grid {
@@ -1555,11 +1560,12 @@
             </p>
             
             <div class="hero-ctas">
-              <a href="#contato" onclick="scrollToSection(event, 'contato')" class="btn btn-primary">
-                Quero meu diagnóstico gratuito
+              <a href="https://api.whatsapp.com/send?phone=5511934281525&text=Olá!+Quero+testar+a+IA+de+estética+para+clínicas." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);">
+                <svg style="width:1.25rem; height:1.25rem; fill:currentColor;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+                Testar IA de Estética
               </a>
-              <a href="#resultados" onclick="scrollToSection(event, 'resultados')" class="btn btn-secondary">
-                Ver casos de sucesso
+              <a href="#video-demonstracao" onclick="scrollToSection(event, 'video-demonstracao')" class="btn btn-secondary">
+                Assistir Vídeo
               </a>
             </div>
           </div>
@@ -1648,6 +1654,29 @@
               </div>
               <h3>Paciente que veio uma vez e sumiu</h3>
               <p>Seu prontuário guarda centenas de pacientes que realizaram procedimentos há meses. Ninguém da clínica entra em contato, ninguém reativa e a receita recorrente é perdida.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO VÍDEO DE APRESENTAÇÃO -->
+      <section class="section bg-secondary" id="video-demonstracao">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Apresentação</span>
+            <h2>Veja o sistema rodando na prática</h2>
+            <p>Assista ao vídeo para entender como a nossa inteligência artificial capta e agenda consultas para sua clínica sem complicação.</p>
+          </div>
+          
+          <div class="video-wrapper">
+            <div class="video-container">
+              <!-- Vídeo player placeholder: o cliente pode facilmente substituir este HTML por um iframe do Vimeo/YouTube -->
+              <div class="video-placeholder" onclick="alert('Vídeo de demonstração: Insira seu link do YouTube ou Vimeo no iframe dentro de index.html')">
+                <div class="video-play-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <div class="video-overlay-text">Clique para assistir ao vídeo de apresentação</div>
+              </div>
             </div>
           </div>
         </div>
@@ -2053,7 +2082,7 @@
         </div>
       </section>
 
-      <!-- SEÇÃO FORMULÁRIO FINAL -->
+      <!-- SEÇÃO CONTATO (FORMULÁRIO SUBSTITUÍDO POR BOTÃO WHATSAPP DIRETO) -->
       <section class="section" id="contato">
         <div class="container">
           <div class="section-header">
@@ -2062,62 +2091,21 @@
             <p>Inicie sua jornada com uma análise gratuita de 20 minutos de forma digital e sem compromisso.</p>
           </div>
 
-          <div class="form-container">
-            <!-- Form Card -->
-            <form id="diagnostico-form" onsubmit="handleFormSubmit(event)">
-              <div class="form-group">
-                <label for="form-nome">Nome Completo</label>
-                <input type="text" id="form-nome" class="form-input" placeholder="Dr. / Dra. Nome Sobrenome" required />
-              </div>
-
-              <div class="form-group">
-                <label for="form-clinica">Nome da Clínica / Consultório</label>
-                <input type="text" id="form-clinica" class="form-input" placeholder="Ex: Clínica Sorriso & Pele" required />
-              </div>
-
-              <div class="form-group">
-                <label for="form-especialidade">Especialidade / Foco Principal</label>
-                <select id="form-especialidade" class="form-select" required>
-                  <option value="" disabled selected>Selecione a especialidade...</option>
-                  <option value="Dermatologia">Dermatologia</option>
-                  <option value="Estética / Harmonização">Estética / Harmonização Facial</option>
-                  <option value="Cirurgia Plástica">Cirurgia Plástica</option>
-                  <option value="Odontologia">Odontologia</option>
-                  <option value="Medicina Geral / Outro">Medicina Geral ou Outro segmento</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="form-whatsapp">WhatsApp Profissional</label>
-                <input type="tel" id="form-whatsapp" class="form-input" placeholder="(00) 00000-0000" required />
-              </div>
-
-              <div class="form-group">
-                <label for="form-cidade">Cidade / Estado</label>
-                <input type="text" id="form-cidade" class="form-input" placeholder="Ex: São Paulo / SP" required />
-              </div>
-
-              <button type="submit" class="btn btn-primary form-submit-btn" id="submit-btn-inner">
-                Quero meu diagnóstico gratuito
-              </button>
-            </form>
-
-            <!-- Success Box -->
-            <div class="form-success-box" id="form-success">
-              <div class="success-icon-wrapper">
-                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-              </div>
-              <h3>Diagnóstico Solicitado!</h3>
-              <p>Os dados da sua clínica foram processados. Para acelerar seu diagnóstico e falar com um especialista em até 2 horas comerciais, clique no botão abaixo para nos chamar no WhatsApp.</p>
-              <a href="#" id="whatsapp-success-btn" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3); font-weight: 700;">
-                <svg style="width:1.25rem; height:1.25rem; fill:currentColor; margin-right: 0.25rem;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
-                Iniciar conversa no WhatsApp
-              </a>
+          <div class="form-container" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+            <div class="success-icon-wrapper" style="background-color: var(--bg-accent-light); color: var(--primary); animation: none; width: 5rem; height: 5rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             </div>
-
-            <div class="form-note">
+            <h3 style="font-size: 1.5rem; font-weight: 800;">Solicitar Diagnóstico pelo WhatsApp</h3>
+            <p style="font-size: 1rem; color: var(--text-secondary); max-width: 440px; margin-top: -1rem;">
+              Clique no botão abaixo para abrir uma conversa direta no nosso canal comercial e receber o diagnóstico da sua clínica em até 2 horas úteis.
+            </p>
+            <a href="https://api.whatsapp.com/send?phone=5511934281525&text=Olá!+Gostaria+de+um+diagnóstico+gratuito+de+marketing+para+minha+clínica." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: #25d366; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); font-weight: 700; width: 100%; max-width: 400px; padding: 1.1rem;">
+              <svg style="width:1.35rem; height:1.35rem; fill:currentColor; margin-right: 0.25rem;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.968C16.588 1.971 14.12 .95 11.5 .948c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.453 3.39 1.31 4.88l-.994 3.63 3.701-.958zm12.355-6.666c-.33-.164-1.957-.955-2.26-1.065-.303-.11-.522-.162-.743.164-.22.33-.85 1.042-1.042 1.262-.193.22-.385.242-.715.077-1.373-.681-2.392-1.196-3.328-2.775-.246-.42.247-.39.704-1.298.077-.154.038-.287-.019-.397-.058-.11-.522-1.248-.717-1.72-.19-.459-.38-.396-.522-.402-.135-.008-.29-.009-.446-.009-.156 0-.41.058-.624.287-.215.23-.82.793-.82 1.932 0 1.14.83 2.243.945 2.397.115.154 1.634 2.47 3.96 3.453.552.23 1.057.37 1.417.48.556.175 1.06.15 1.459.09.444-.066 1.957-.79 2.234-1.55.277-.76.277-1.41.194-1.55-.083-.14-.303-.22-.633-.385z"/></svg>
+              Iniciar Conversa no WhatsApp
+            </a>
+            <div class="form-note" style="margin-top: 0;">
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              <span>Retorno em até 2 horas úteis pelo WhatsApp.</span>
+              <span>Sem formulários. Resposta direta pelo WhatsApp comercial.</span>
             </div>
           </div>
         </div>
@@ -2154,7 +2142,7 @@
           
           <h2>5. Propriedade Intelectual</h2>
           <p>
-            Todo o design estrutural do site, textos promocionais, elementos visuais e códigos do assistente virtual são propriedade intelectual exclusiva da Neurautomation, resguardados pelas leis de direitos autorais no Brasil.
+            Todo o design estrutural do site, textos promocionais, elements visuais e códigos do assistente virtual são propriedade intelectual exclusiva da Neurautomation, resguardados pelas leis de direitos autorais no Brasil.
           </p>
           
           <div class="prose-contact-box">
@@ -2184,7 +2172,7 @@
           
           <h2>3. Retenção e Segurança dos Dados</h2>
           <p>
-            Seus dados cadastrais básicos ficam retidos em servidores de nuvem seguros pelo período estritamente necessário para prestar o suporte comercial ou enquanto houver relação de prestação de serviços ativa. Garantimos que não vendemos, comercializamos ou compartilhamos seus dados com terceiros com finalidades externas de propaganda.
+            Seus dados cadastrais básicos ficam retidos em servidores de nuvem seguros pelo período estritamente necessário para prestar o suporte comercial ou enquanto houver relação de prestação de serviços activa. Garantimos que não vendemos, comercializamos ou compartilhamos seus dados com terceiros com finalidades externas de propaganda.
           </p>
           
           <h2>4. Direitos do Titular</h2>
@@ -2354,63 +2342,6 @@
         }
       });
     });
-
-    // Phone Mask helper for professional WhatsApp input
-    const phoneInput = document.getElementById('form-whatsapp');
-    phoneInput.addEventListener('input', (e) => {
-      let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-      e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-    });
-
-    // Form Submission Lead qualification and Redirect to WhatsApp
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      
-      const submitBtn = document.getElementById('submit-btn-inner');
-      const formElement = document.getElementById('diagnostico-form');
-      const successBox = document.getElementById('form-success');
-      
-      // Get values
-      const nome = document.getElementById('form-nome').value.trim();
-      const clinica = document.getElementById('form-clinica').value.trim();
-      const especialidade = document.getElementById('form-especialidade').value;
-      const whatsapp = document.getElementById('form-whatsapp').value.trim();
-      const cidade = document.getElementById('form-cidade').value.trim();
-
-      // Show processing state in submit button
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.8';
-      submitBtn.textContent = 'Enviando dados...';
-
-      // Simulation steps for high conversion premium feedback
-      setTimeout(() => {
-        submitBtn.textContent = 'Analisando especialidade...';
-        
-        setTimeout(() => {
-          submitBtn.textContent = 'Gerando diagnóstico de IA...';
-          
-          setTimeout(() => {
-            // Hide Form & show Success Box
-            formElement.style.display = 'none';
-            successBox.style.display = 'flex';
-            
-            // Format WhatsApp Message
-            const whatsappNumber = '5511934281525';
-            const baseText = `Olá Neurautomation! Acabei de solicitar meu diagnóstico gratuito pelo site.\n\n*Dados da Clínica:*\n*Nome:* ${nome}\n*Clínica:* ${clinica}\n*Especialidade:* ${especialidade}\n*WhatsApp:* ${whatsapp}\n*Cidade:* ${cidade}`;
-            const encodedText = encodeURIComponent(baseText);
-            const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedText}`;
-            
-            // Apply to button href
-            const waSuccessBtn = document.getElementById('whatsapp-success-btn');
-            waSuccessBtn.href = whatsappLink;
-            
-            // Attempt auto-popup redirect (opens in a new tab)
-            window.open(whatsappLink, '_blank');
-            
-          }, 600);
-        }, 600);
-      }, 600);
-    }
 
     // Live AI Console Simulator (Futuristic Robot Logs & Code lines)
     const terminalLines = [
