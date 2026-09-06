@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Neurautomation - Technology. Performance. Growth.",
-  description: "Transformamos tecnologia e estratégia em crescimento digital.",
+  description: "Transformamos tecnologia e estratégia em crescimento digital. Veja nossa jornada em formato interativo.",
 }
 
 export default function RootLayout({
