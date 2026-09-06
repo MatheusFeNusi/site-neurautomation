@@ -1,4 +1,4 @@
-# Neurautomation React - Radial Orbital Timeline
+# Neurautomation - Technology. Performance. Growth.
 
 Projeto Next.js com TypeScript, Tailwind CSS e shadcn/ui integrando o componente RadialOrbitalTimeline para mostrar a jornada da Neurautomation.
 
@@ -14,6 +14,7 @@ Projeto Next.js com TypeScript, Tailwind CSS e shadcn/ui integrando o componente
 
 - Node.js 18+ instalado
 - npm ou yarn
+- Conta no Vercel para deployment
 
 ## 🔧 Instalação
 
@@ -106,7 +107,38 @@ npm run start    # Inicia servidor de produção
 npm run lint     # Executa ESLint
 ```
 
-## 📝 Notas
+## � Deployment no Vercel
+
+### 1. Conectar repositório ao Vercel
+
+1. Acesse [vercel.com](https://vercel.com)
+2. Clique em "Add New Project"
+3. Importe o repositório `MatheusFeNusi/site-neurautomation`
+4. O Vercel detectará automaticamente que é um projeto Next.js
+
+### 2. Configurações de Build
+
+O arquivo `vercel.json` já está configurado com:
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next`
+- **Framework**: Next.js
+- **Install Command**: `npm install`
+
+### 3. Variáveis de Ambiente (se necessário)
+
+Se precisar de variáveis de ambiente, adicione no Vercel:
+- Settings → Environment Variables
+
+### 4. Deploy Automático
+
+Após conectar, cada push para o branch `master` acionará um deploy automático.
+
+### 5. Domínio Personalizado (opcional)
+
+No Vercel, você pode configurar um domínio personalizado em:
+- Settings → Domains
+
+## �📝 Notas
 
 - O componente usa `"use client"` para interatividade
 - Animações customizadas estão definidas em `globals.css`
